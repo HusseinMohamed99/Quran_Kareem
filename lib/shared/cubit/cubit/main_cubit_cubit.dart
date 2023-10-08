@@ -9,16 +9,27 @@ class MainCubit extends Cubit<MainState> {
   static MainCubit get(context) => BlocProvider.of(context);
 
   SurahModel? surahModel;
-  void getSurah() {
+  void getSurahAR() {
     emit(MainCubitLoading());
     DioHelper.getData(
       url: surah,
     ).then((value) {
       surahModel = SurahModel.fromJson(value.data);
       emit(MainCubitSuccess());
-      print(value.data);
     }).catchError((error) {
-      print(error.toString());
+      emit(MainCubitError(error.toString()));
+    });
+  }
+
+  void getSurahEN() {
+    emit(MainCubitLoading());
+    DioHelper.getData(
+      url: '$surah?language=eng',
+    ).then((value) {
+      surahModel = SurahModel.fromJson(value.data);
+      print(value.data);
+      emit(MainCubitSuccess());
+    }).catchError((error) {
       emit(MainCubitError(error.toString()));
     });
   }

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:moshaf_app/image_assets.dart';
+import 'package:moshaf_app/model/surah_model.dart';
 import 'package:moshaf_app/shared/Colors/color_manager.dart';
 import 'package:moshaf_app/shared/Cubit/cubit/main_cubit_state.dart';
 import 'package:moshaf_app/shared/cubit/cubit/main_cubit_cubit.dart';
@@ -40,69 +41,59 @@ class MoshafScreen extends StatelessWidget {
               body: SizedBox(
                 width: screenWidth,
                 height: screenHeight,
-                child: SafeArea(
-                  bottom: false,
-                  child: ListView(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    primary: true,
-                    children: [
-                      SizedBox(
-                        height: screenHeight * .4,
-                        child: Stack(
-                          alignment: Alignment.bottomCenter,
-                          children: [
-                            Positioned(
-                              top: screenHeight * .001,
-                              child: SvgPicture.asset(
-                                Assets.imagesLogo,
-                                width: screenWidth * .8,
-                              ),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: screenHeight * .4,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Positioned(
+                            top: screenHeight * .001,
+                            child: SvgPicture.asset(
+                              Assets.imagesLogo,
+                              width: screenWidth * .8,
                             ),
-                            Positioned(
-                              top: screenHeight * .20,
-                              child: Stack(
-                                alignment: Alignment.bottomCenter,
-                                children: [
-                                  Container(
-                                    width: screenWidth * .9,
-                                    height: screenHeight * .2,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(11),
-                                        gradient: const LinearGradient(colors: [
-                                          ColorsManager.kGreenColor,
-                                          ColorsManager.kBlueColor,
-                                        ])),
+                          ),
+                          Positioned(
+                            top: screenHeight * .20,
+                            child: Stack(
+                              alignment: Alignment.bottomCenter,
+                              children: [
+                                Container(
+                                  width: screenWidth * .9,
+                                  height: screenHeight * .2,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(11),
+                                      gradient: const LinearGradient(colors: [
+                                        ColorsManager.kGreenColor,
+                                        ColorsManager.kBlueColor,
+                                      ])),
+                                ),
+                                SvgPicture.asset(Assets.imagesVector),
+                                Positioned(
+                                  top: screenHeight * .08,
+                                  child: SvgPicture.asset(
+                                    Assets.imagesAlBasmala,
+                                    fit: BoxFit.fitHeight,
+                                    width: screenWidth * .6,
                                   ),
-                                  SvgPicture.asset(Assets.imagesVector),
-                                  Positioned(
-                                    top: screenHeight * .08,
-                                    child: SvgPicture.asset(
-                                      Assets.imagesAlBasmala,
-                                      fit: BoxFit.fitHeight,
-                                      width: screenWidth * .6,
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                      ListView.separated(
+                    ),
+                    Expanded(
+                      child: ListView.separated(
                         padding: const EdgeInsets.symmetric(vertical: 30),
-                        physics: const NeverScrollableScrollPhysics(),
+                        physics: const BouncingScrollPhysics(),
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
-                          return Center(
-                            child: Text(
-                              mainCubit.surahModel!.suwar![index].name!,
-                              textAlign: TextAlign.left,
-                              style: const TextStyle(
-                                fontSize: 17,
-                                color: ColorsManager.kWhiteColor,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
+                          return SurahItem(
+                            surahModel: mainCubit.surahModel!,
+                            index: index,
                           );
                         },
                         separatorBuilder: (context, index) {
@@ -110,8 +101,8 @@ class MoshafScreen extends StatelessWidget {
                         },
                         itemCount: mainCubit.surahModel!.suwar!.length,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -119,6 +110,30 @@ class MoshafScreen extends StatelessWidget {
         );
       },
       listener: (context, state) {},
+    );
+  }
+}
+
+class SurahItem extends StatelessWidget {
+  const SurahItem({super.key, required this.surahModel, required this.index});
+  final SurahModel surahModel;
+  final int index;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(),
+      child: Row(
+        children: [
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              SvgPicture.asset(Assets.imagesIconMuslim),
+              Text(surahModel.suwar![index].id!.toString(),
+                  style: const TextStyle(color: ColorsManager.kWhiteColor)),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
