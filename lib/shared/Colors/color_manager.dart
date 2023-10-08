@@ -2,8 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 class ColorsManager {
   // Colors Manager Color
-  static const Color kPinkColor = Color(0xFFFE53BB);
-  static const Color kCyanColor = Color(0xFF08F7FE);
+  static const Color kBackgroundColor = Color.fromRGBO(69, 94, 181, 100);
   static const Color kGreenColor = Color(0xff65D6FC);
   static const Color kBlueColor = Color(0xFF455EB5);
   static const Color kBlackColor = Color(0xFF19191B);
