@@ -21,3 +21,23 @@ class GetRadioError extends MainState {
 
   GetRadioError(this.error);
 }
+
+class GetRiwayatLoading extends MainState {}
+
+class GetRiwayatSuccess extends MainState {}
+
+class GetRiwayatError extends MainState {
+  final String error;
+
+  GetRiwayatError(this.error);
+}
+
+class GetTafasirLoading extends MainState {}
+
+class GetTafasirSuccess extends MainState {}
+
+class GetTafasirError extends MainState {
+  final String error;
+
+  GetTafasirError(this.error);
+}

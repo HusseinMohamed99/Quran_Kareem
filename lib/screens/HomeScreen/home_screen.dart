@@ -3,7 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:moshaf_app/image_assets.dart';
-import 'package:moshaf_app/screens/HomeScreen/MoshafScreen/moshaf_screen.dart';
+import 'package:moshaf_app/screens/MoshafScreen/moshaf_screen.dart';
+import 'package:moshaf_app/screens/RadioScreen/radio_screen.dart';
 import 'package:moshaf_app/shared/Colors/color_manager.dart';
 import 'package:moshaf_app/shared/cubit/cubit/main_cubit_state.dart';
 import 'package:moshaf_app/shared/cubit/cubit/main_cubit_cubit.dart';
@@ -171,14 +172,14 @@ class HomeScreen extends StatelessWidget {
                             Expanded(
                               child: GestureDetector(
                                 onTap: () {
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //     builder: (context) {
-                                  //       return const MoshafScreen();
-                                  //     },
-                                  //   ),
-                                  // );
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return const RadioScreen();
+                                      },
+                                    ),
+                                  );
                                 },
                                 child: Stack(
                                   alignment: Alignment.bottomCenter,
@@ -266,7 +267,7 @@ class HomeScreen extends StatelessWidget {
                                           MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          'سورة',
+                                          'روايات',
                                           style: TextStyle(
                                             fontSize: 23,
                                             color: ColorsManager.kWhiteColor,
@@ -274,7 +275,7 @@ class HomeScreen extends StatelessWidget {
                                           ),
                                         ),
                                         Text(
-                                          'Surah',
+                                          'Rewayat',
                                           style: TextStyle(
                                             fontSize: 23,
                                             color: ColorsManager.kWhiteColor,
@@ -321,7 +322,7 @@ class HomeScreen extends StatelessWidget {
                                             MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            'راديو',
+                                            'تفسير',
                                             style: TextStyle(
                                               fontSize: 23,
                                               color: ColorsManager.kWhiteColor,
@@ -329,7 +330,7 @@ class HomeScreen extends StatelessWidget {
                                             ),
                                           ),
                                           Text(
-                                            'Radio',
+                                            'Tafasir',
                                             style: TextStyle(
                                               fontSize: 23,
                                               color: ColorsManager.kWhiteColor,

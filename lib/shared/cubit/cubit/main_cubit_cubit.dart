@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moshaf_app/model/radio_model.dart';
 import 'package:moshaf_app/model/riwayat_model.dart';
@@ -6,6 +8,7 @@ import 'package:moshaf_app/model/tafasir_model.dart';
 import 'package:moshaf_app/shared/Network/dio_helper.dart';
 import 'package:moshaf_app/shared/Network/end_points.dart';
 import 'package:moshaf_app/shared/cubit/cubit/main_cubit_state.dart';
+import 'package:http/http.dart' as http;
 
 class MainCubit extends Cubit<MainState> {
   MainCubit() : super(MainCubitInitial());
@@ -24,45 +27,31 @@ class MainCubit extends Cubit<MainState> {
     });
   }
 
-  RadioModel? radioModel;
-  void getRadio() {
-    emit(GetRadioLoading());
-    DioHelper.getData(
-      url: radio,
-    ).then((value) {
-      radioModel = RadioModel.fromJson(value.data);
-      // print(value.data);
-      emit(GetRadioSuccess());
-    }).catchError((error) {
-      emit(GetRadioError(error.toString()));
-    });
-  }
-
   RiwayatModel? riwayatModel;
   void getRiwayat() {
-    emit(GetRadioLoading());
+    emit(GetRiwayatLoading());
     DioHelper.getData(
       url: rewayah,
     ).then((value) {
       riwayatModel = RiwayatModel.fromJson(value.data);
       // print(value.data);
-      emit(GetRadioSuccess());
+      emit(GetRiwayatSuccess());
     }).catchError((error) {
-      emit(GetRadioError(error.toString()));
+      emit(GetRiwayatError(error.toString()));
     });
   }
 
   TafasirModel? tafasirModel;
   void getTafasir() {
-    emit(GetRadioLoading());
+    emit(GetTafasirLoading());
     DioHelper.getData(
       url: tafasir,
     ).then((value) {
       tafasirModel = TafasirModel.fromJson(value.data);
-      print(value.data);
-      emit(GetRadioSuccess());
+      // print(value.data);
+      emit(GetTafasirSuccess());
     }).catchError((error) {
-      emit(GetRadioError(error.toString()));
+      emit(GetTafasirError(error.toString()));
     });
   }
 }
