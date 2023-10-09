@@ -2,12 +2,22 @@ abstract class MainState {}
 
 class MainCubitInitial extends MainState {}
 
-class MainCubitLoading extends MainState {}
+class GetSurahLoading extends MainState {}
 
-class MainCubitSuccess extends MainState {}
+class GetSurahSuccess extends MainState {}
 
-class MainCubitError extends MainState {
+class GetSurahError extends MainState {
   final String error;
 
-  MainCubitError(this.error);
+  GetSurahError(this.error);
+}
+
+class GetRadioLoading extends MainState {}
+
+class GetRadioSuccess extends MainState {}
+
+class GetRadioError extends MainState {
+  final String error;
+
+  GetRadioError(this.error);
 }

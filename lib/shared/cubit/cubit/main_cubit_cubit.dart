@@ -1,8 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moshaf_app/model/radio_model.dart';
+import 'package:moshaf_app/model/riwayat_model.dart';
 import 'package:moshaf_app/model/surah_model.dart';
-import 'package:moshaf_app/shared/Cubit/cubit/main_cubit_state.dart';
+import 'package:moshaf_app/model/tafasir_model.dart';
 import 'package:moshaf_app/shared/Network/dio_helper.dart';
 import 'package:moshaf_app/shared/Network/end_points.dart';
+import 'package:moshaf_app/shared/cubit/cubit/main_cubit_state.dart';
 
 class MainCubit extends Cubit<MainState> {
   MainCubit() : super(MainCubitInitial());
@@ -10,27 +13,56 @@ class MainCubit extends Cubit<MainState> {
 
   SurahModel? surahModel;
   void getSurahAR() {
-    emit(MainCubitLoading());
+    emit(GetSurahLoading());
     DioHelper.getData(
       url: surah,
     ).then((value) {
       surahModel = SurahModel.fromJson(value.data);
-      emit(MainCubitSuccess());
+      emit(GetSurahSuccess());
     }).catchError((error) {
-      emit(MainCubitError(error.toString()));
+      emit(GetSurahError(error.toString()));
     });
   }
 
-  void getSurahEN() {
-    emit(MainCubitLoading());
+  RadioModel? radioModel;
+  void getRadio() {
+    emit(GetRadioLoading());
     DioHelper.getData(
-      url: '$surah?language=eng',
+      url: radio,
     ).then((value) {
-      surahModel = SurahModel.fromJson(value.data);
-      print(value.data);
-      emit(MainCubitSuccess());
+      radioModel = RadioModel.fromJson(value.data);
+      // print(value.data);
+      emit(GetRadioSuccess());
     }).catchError((error) {
-      emit(MainCubitError(error.toString()));
+      emit(GetRadioError(error.toString()));
+    });
+  }
+
+  RiwayatModel? riwayatModel;
+  void getRiwayat() {
+    emit(GetRadioLoading());
+    DioHelper.getData(
+      url: rewayah,
+    ).then((value) {
+      riwayatModel = RiwayatModel.fromJson(value.data);
+      // print(value.data);
+      emit(GetRadioSuccess());
+    }).catchError((error) {
+      emit(GetRadioError(error.toString()));
+    });
+  }
+
+  TafasirModel? tafasirModel;
+  void getTafasir() {
+    emit(GetRadioLoading());
+    DioHelper.getData(
+      url: tafasir,
+    ).then((value) {
+      tafasirModel = TafasirModel.fromJson(value.data);
+      print(value.data);
+      emit(GetRadioSuccess());
+    }).catchError((error) {
+      emit(GetRadioError(error.toString()));
     });
   }
 }

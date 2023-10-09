@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:glassmorphism/glassmorphism.dart';
 import 'package:moshaf_app/image_assets.dart';
 import 'package:moshaf_app/screens/HomeScreen/MoshafScreen/moshaf_screen.dart';
 import 'package:moshaf_app/shared/Colors/color_manager.dart';
-import 'package:moshaf_app/shared/Cubit/cubit/main_cubit_state.dart';
+import 'package:moshaf_app/shared/cubit/cubit/main_cubit_state.dart';
 import 'package:moshaf_app/shared/cubit/cubit/main_cubit_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -97,117 +96,368 @@ class HomeScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                  ],
-                ),
-              ),
-            ),
-            floatingActionButton: Container(
-              padding: const EdgeInsets.all(4),
-              margin: const EdgeInsets.only(top: 40),
-              width: 71,
-              height: 71,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    ColorsManager.kGreenColor.withOpacity(0.2),
-                    ColorsManager.kGreenColor.withOpacity(0.2),
-                  ],
-                ),
-              ),
-              child: Container(
-                padding: const EdgeInsets.all(4),
-                width: 62,
-                height: 62,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      ColorsManager.kGreenColor,
-                      ColorsManager.kYellowColor,
-                    ],
-                  ),
-                ),
-                child: RawMaterialButton(
-                  onPressed: () {},
-                  shape: const CircleBorder(),
-                  fillColor: ColorsManager.kBlackColor,
-                  child: SvgPicture.asset(Assets.imagesIconHome),
-                ),
-              ),
-            ),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.miniCenterDocked,
-            bottomNavigationBar: GlassmorphicContainer(
-              alignment: Alignment.center,
-              width: screenWidth,
-              height: 70,
-              borderRadius: 0,
-              linearGradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  ColorsManager.kWhiteColor.withOpacity(0.1),
-                  ColorsManager.kWhiteColor.withOpacity(0.1),
-                ],
-              ),
-              border: 0,
-              blur: 41,
-              borderGradient: const LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  ColorsManager.kBlueColor,
-                  ColorsManager.kGreenColor,
-                ],
-              ),
-              child: BottomAppBar(
-                  elevation: 0,
-                  color: Colors.transparent,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: IconButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return const MoshafScreen();
+                    const SizedBox(
+                      height: 45,
+                    ),
+                    Column(
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return const MoshafScreen();
+                                      },
+                                    ),
+                                  );
                                 },
+                                child: Stack(
+                                  alignment: Alignment.bottomCenter,
+                                  children: [
+                                    SvgPicture.asset(
+                                      Assets.imagesLogo,
+                                      height: 135,
+                                      width: 135,
+                                    ),
+                                    Container(
+                                      width: 137,
+                                      height: 137,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(11),
+                                        gradient: LinearGradient(
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomRight,
+                                          colors: [
+                                            ColorsManager.kGreenColor,
+                                            ColorsManager.kBlueColor
+                                                .withOpacity(0.2),
+                                          ],
+                                        ),
+                                      ),
+                                      child: const Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'سورة',
+                                            style: TextStyle(
+                                              fontSize: 23,
+                                              color: ColorsManager.kWhiteColor,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          Text(
+                                            'Surah',
+                                            style: TextStyle(
+                                              fontSize: 23,
+                                              color: ColorsManager.kWhiteColor,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            );
-                          },
-                          icon: SvgPicture.asset(Assets.imagesIconHome),
+                            ),
+                            const SizedBox(
+                              width: 52,
+                            ),
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () {
+                                  // Navigator.push(
+                                  //   context,
+                                  //   MaterialPageRoute(
+                                  //     builder: (context) {
+                                  //       return const MoshafScreen();
+                                  //     },
+                                  //   ),
+                                  // );
+                                },
+                                child: Stack(
+                                  alignment: Alignment.bottomCenter,
+                                  children: [
+                                    SvgPicture.asset(
+                                      Assets.imagesLogo,
+                                      height: 135,
+                                      width: 135,
+                                    ),
+                                    Container(
+                                      width: 137,
+                                      height: 137,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(11),
+                                        gradient: LinearGradient(
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomRight,
+                                          colors: [
+                                            ColorsManager.kGreenColor,
+                                            ColorsManager.kBlueColor
+                                                .withOpacity(0.2),
+                                          ],
+                                        ),
+                                      ),
+                                      child: const Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'راديو',
+                                            style: TextStyle(
+                                              fontSize: 23,
+                                              color: ColorsManager.kWhiteColor,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          Text(
+                                            'Radio',
+                                            style: TextStyle(
+                                              fontSize: 23,
+                                              color: ColorsManager.kWhiteColor,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      Expanded(
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: SvgPicture.asset(Assets.imagesIconHome),
+                        const SizedBox(
+                          height: 42,
                         ),
-                      ),
-                      const Expanded(child: Text('')),
-                      Expanded(
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: SvgPicture.asset(Assets.imagesIconHome),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Stack(
+                                alignment: Alignment.bottomCenter,
+                                children: [
+                                  SvgPicture.asset(
+                                    Assets.imagesLogo,
+                                    height: 135,
+                                    width: 135,
+                                  ),
+                                  Container(
+                                    width: 137,
+                                    height: 137,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(11),
+                                      gradient: LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                        colors: [
+                                          ColorsManager.kGreenColor,
+                                          ColorsManager.kBlueColor
+                                              .withOpacity(0.2),
+                                        ],
+                                      ),
+                                    ),
+                                    child: const Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'سورة',
+                                          style: TextStyle(
+                                            fontSize: 23,
+                                            color: ColorsManager.kWhiteColor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text(
+                                          'Surah',
+                                          style: TextStyle(
+                                            fontSize: 23,
+                                            color: ColorsManager.kWhiteColor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 52,
+                            ),
+                            Expanded(
+                              child: Stack(
+                                alignment: Alignment.bottomCenter,
+                                children: [
+                                  SvgPicture.asset(
+                                    Assets.imagesLogo,
+                                    height: 135,
+                                    width: 135,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {},
+                                    child: Container(
+                                      width: 137,
+                                      height: 137,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(11),
+                                        gradient: LinearGradient(
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomRight,
+                                          colors: [
+                                            ColorsManager.kGreenColor,
+                                            ColorsManager.kBlueColor
+                                                .withOpacity(0.2),
+                                          ],
+                                        ),
+                                      ),
+                                      child: const Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'راديو',
+                                            style: TextStyle(
+                                              fontSize: 23,
+                                              color: ColorsManager.kWhiteColor,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          Text(
+                                            'Radio',
+                                            style: TextStyle(
+                                              fontSize: 23,
+                                              color: ColorsManager.kWhiteColor,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      Expanded(
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: SvgPicture.asset(Assets.imagesIconHome),
-                        ),
-                      ),
-                    ],
-                  )),
+                      ],
+                    )
+                  ],
+                ),
+              ),
             ),
+            // floatingActionButton: Container(
+            //   padding: const EdgeInsets.all(4),
+            //   margin: const EdgeInsets.only(top: 40),
+            //   width: 71,
+            //   height: 71,
+            //   decoration: BoxDecoration(
+            //     shape: BoxShape.circle,
+            //     gradient: LinearGradient(
+            //       begin: Alignment.topLeft,
+            //       end: Alignment.bottomRight,
+            //       colors: [
+            //         ColorsManager.kGreenColor.withOpacity(0.2),
+            //         ColorsManager.kGreenColor.withOpacity(0.2),
+            //       ],
+            //     ),
+            //   ),
+            //   child: Container(
+            //     padding: const EdgeInsets.all(4),
+            //     width: 62,
+            //     height: 62,
+            //     decoration: const BoxDecoration(
+            //       shape: BoxShape.circle,
+            //       gradient: LinearGradient(
+            //         begin: Alignment.topLeft,
+            //         end: Alignment.bottomRight,
+            //         colors: [
+            //           ColorsManager.kGreenColor,
+            //           ColorsManager.kYellowColor,
+            //         ],
+            //       ),
+            //     ),
+            //     child: RawMaterialButton(
+            //       onPressed: () {},
+            //       shape: const CircleBorder(),
+            //       fillColor: ColorsManager.kBlackColor,
+            //       child: SvgPicture.asset(Assets.imagesIconHome),
+            //     ),
+            //   ),
+            // ),
+            // floatingActionButtonLocation:
+            //     FloatingActionButtonLocation.miniCenterDocked,
+            // bottomNavigationBar: GlassmorphicContainer(
+            //   alignment: Alignment.center,
+            //   width: screenWidth,
+            //   height: 70,
+            //   borderRadius: 0,
+            //   linearGradient: LinearGradient(
+            //     begin: Alignment.topCenter,
+            //     end: Alignment.bottomCenter,
+            //     colors: [
+            //       ColorsManager.kWhiteColor.withOpacity(0.1),
+            //       ColorsManager.kWhiteColor.withOpacity(0.1),
+            //     ],
+            //   ),
+            //   border: 0,
+            //   blur: 41,
+            //   borderGradient: const LinearGradient(
+            //     begin: Alignment.topCenter,
+            //     end: Alignment.bottomCenter,
+            //     colors: [
+            //       ColorsManager.kBlueColor,
+            //       ColorsManager.kGreenColor,
+            //     ],
+            //   ),
+            //   child: BottomAppBar(
+            //       elevation: 0,
+            //       color: Colors.transparent,
+            //       child: Row(
+            //         mainAxisAlignment: MainAxisAlignment.center,
+            //         children: [
+            //           Expanded(
+            //             child: IconButton(
+            //               onPressed: () {
+            //                 Navigator.push(
+            //                   context,
+            //                   MaterialPageRoute(
+            //                     builder: (context) {
+            //                       return const MoshafScreen();
+            //                     },
+            //                   ),
+            //                 );
+            //               },
+            //               icon: SvgPicture.asset(Assets.imagesIconHome),
+            //             ),
+            //           ),
+            //           Expanded(
+            //             child: IconButton(
+            //               onPressed: () {},
+            //               icon: SvgPicture.asset(Assets.imagesIconHome),
+            //             ),
+            //           ),
+            //           const Expanded(child: Text('')),
+            //           Expanded(
+            //             child: IconButton(
+            //               onPressed: () {},
+            //               icon: SvgPicture.asset(Assets.imagesIconHome),
+            //             ),
+            //           ),
+            //           Expanded(
+            //             child: IconButton(
+            //               onPressed: () {},
+            //               icon: SvgPicture.asset(Assets.imagesIconHome),
+            //             ),
+            //           ),
+            //         ],
+            //       )),
+            // ),
           ),
         );
       },

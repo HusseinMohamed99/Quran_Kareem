@@ -6,7 +6,7 @@ import 'package:moshaf_app/screens/HomeScreen/home_screen.dart';
 import 'package:moshaf_app/shared/Colors/color_manager.dart';
 import 'package:moshaf_app/shared/bloc_observer.dart';
 import 'package:moshaf_app/shared/cubit/cubit/main_cubit_cubit.dart';
-import 'package:moshaf_app/shared/Cubit/cubit/main_cubit_state.dart';
+import 'package:moshaf_app/shared/cubit/cubit/main_cubit_state.dart';
 import 'package:moshaf_app/shared/Network/dio_helper.dart';
 
 void main() async {
@@ -26,9 +26,12 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (context) => MainCubit()
-              ..getSurahAR()
-              ..getSurahEN()),
+          create: (context) => MainCubit()
+            ..getSurahAR()
+            ..getRadio()
+            ..getRiwayat()
+            ..getTafasir(),
+        ),
       ],
       child: BlocConsumer<MainCubit, MainState>(
         listener: (context, state) {},

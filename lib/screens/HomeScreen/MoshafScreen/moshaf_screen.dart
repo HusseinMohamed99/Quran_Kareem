@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:moshaf_app/image_assets.dart';
 import 'package:moshaf_app/model/surah_model.dart';
 import 'package:moshaf_app/shared/Colors/color_manager.dart';
-import 'package:moshaf_app/shared/Cubit/cubit/main_cubit_state.dart';
+import 'package:moshaf_app/shared/cubit/cubit/main_cubit_state.dart';
 import 'package:moshaf_app/shared/cubit/cubit/main_cubit_cubit.dart';
 
 class MoshafScreen extends StatelessWidget {
@@ -97,7 +97,12 @@ class MoshafScreen extends StatelessWidget {
                           );
                         },
                         separatorBuilder: (context, index) {
-                          return const SizedBox(height: 20);
+                          return const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 25),
+                            child: Divider(
+                              color: ColorsManager.kWhiteColor,
+                            ),
+                          );
                         },
                         itemCount: mainCubit.surahModel!.suwar!.length,
                       ),
@@ -121,16 +126,44 @@ class SurahItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
       child: Row(
         children: [
           Stack(
             alignment: Alignment.center,
             children: [
               SvgPicture.asset(Assets.imagesIconMuslim),
-              Text(surahModel.suwar![index].id!.toString(),
-                  style: const TextStyle(color: ColorsManager.kWhiteColor)),
+              Text(
+                surahModel.suwar![index].id!.toString(),
+                style: const TextStyle(
+                  color: ColorsManager.kWhiteColor,
+                ),
+              ),
             ],
+          ),
+          Expanded(
+            child: Column(
+              children: [
+                Text(
+                  surahModel.suwar![index].name!,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: ColorsManager.kGreenColor,
+                    fontSize: 20,
+                  ),
+                ),
+                Text(
+                  surahModel.suwar![index].makkia!.toString() == '0'
+                      ? 'Medinian'
+                      : 'Meccan',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: ColorsManager.kWhiteColor,
+                    fontSize: 14,
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
