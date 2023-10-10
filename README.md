@@ -1,7 +1,7 @@
 # Quran Kareem Ap
 
-## Download The App![GitHub All Releases](https://img.shields.io/github/downloads/HusseinMohamed99/Responsive_Movies_App_UI/total?color=green)
-<a href="https://github.com/HusseinMohamed99/Responsive_Movies_App_UI/releases/download/v1.0.0/Responsive.Movies.App.apk"><img src="https://playerzon.com/asset/download.png" width="200">
+## Download The App![GitHub All Releases](https://img.shields.io/github/downloads/HusseinMohamed99/Moshaf_App/total?color=green)
+<a href="https://github.com/HusseinMohamed99/Moshaf_App/releases/download/v1.0.0/QURAN.KAREEM.apk"><img src="https://playerzon.com/asset/download.png" width="200">
 </img></a>
 
 Developed a Quran Kareem app using Flutter that provides a comprehensive set of features for Quran recitation, study, and listening:
