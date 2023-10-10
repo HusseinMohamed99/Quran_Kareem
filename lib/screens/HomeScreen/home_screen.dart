@@ -5,6 +5,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:moshaf_app/image_assets.dart';
 import 'package:moshaf_app/screens/MoshafScreen/moshaf_screen.dart';
 import 'package:moshaf_app/screens/RadioScreen/radio_screen.dart';
+import 'package:moshaf_app/screens/RiwayatScreen/riwayat_screen.dart';
+import 'package:moshaf_app/screens/TafasirScreen/tafasir_screen.dart';
 import 'package:moshaf_app/shared/Colors/color_manager.dart';
 import 'package:moshaf_app/shared/cubit/cubit/main_cubit_state.dart';
 import 'package:moshaf_app/shared/cubit/cubit/main_cubit_cubit.dart';
@@ -239,70 +241,26 @@ class HomeScreen extends StatelessWidget {
                         Row(
                           children: [
                             Expanded(
-                              child: Stack(
-                                alignment: Alignment.bottomCenter,
-                                children: [
-                                  SvgPicture.asset(
-                                    Assets.imagesLogo,
-                                    height: 135,
-                                    width: 135,
-                                  ),
-                                  Container(
-                                    width: 137,
-                                    height: 137,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(11),
-                                      gradient: LinearGradient(
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                        colors: [
-                                          ColorsManager.kGreenColor,
-                                          ColorsManager.kBlueColor
-                                              .withOpacity(0.2),
-                                        ],
-                                      ),
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return const RiwayatScreen();
+                                      },
                                     ),
-                                    child: const Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'روايات',
-                                          style: TextStyle(
-                                            fontSize: 23,
-                                            color: ColorsManager.kWhiteColor,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        Text(
-                                          'Rewayat',
-                                          style: TextStyle(
-                                            fontSize: 23,
-                                            color: ColorsManager.kWhiteColor,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ],
+                                  );
+                                },
+                                child: Stack(
+                                  alignment: Alignment.bottomCenter,
+                                  children: [
+                                    SvgPicture.asset(
+                                      Assets.imagesLogo,
+                                      height: 135,
+                                      width: 135,
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 52,
-                            ),
-                            Expanded(
-                              child: Stack(
-                                alignment: Alignment.bottomCenter,
-                                children: [
-                                  SvgPicture.asset(
-                                    Assets.imagesLogo,
-                                    height: 135,
-                                    width: 135,
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {},
-                                    child: Container(
+                                    Container(
                                       width: 137,
                                       height: 137,
                                       decoration: BoxDecoration(
@@ -322,7 +280,7 @@ class HomeScreen extends StatelessWidget {
                                             MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            'تفسير',
+                                            'روايات',
                                             style: TextStyle(
                                               fontSize: 23,
                                               color: ColorsManager.kWhiteColor,
@@ -330,7 +288,7 @@ class HomeScreen extends StatelessWidget {
                                             ),
                                           ),
                                           Text(
-                                            'Tafasir',
+                                            'Rewayat',
                                             style: TextStyle(
                                               fontSize: 23,
                                               color: ColorsManager.kWhiteColor,
@@ -340,8 +298,79 @@ class HomeScreen extends StatelessWidget {
                                         ],
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 52,
+                            ),
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return const TafasirScreen();
+                                      },
+                                    ),
+                                  );
+                                },
+                                child: Stack(
+                                  alignment: Alignment.bottomCenter,
+                                  children: [
+                                    SvgPicture.asset(
+                                      Assets.imagesLogo,
+                                      height: 135,
+                                      width: 135,
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {},
+                                      child: Container(
+                                        width: 137,
+                                        height: 137,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(11),
+                                          gradient: LinearGradient(
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                            colors: [
+                                              ColorsManager.kGreenColor,
+                                              ColorsManager.kBlueColor
+                                                  .withOpacity(0.2),
+                                            ],
+                                          ),
+                                        ),
+                                        child: const Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'تفسير',
+                                              style: TextStyle(
+                                                fontSize: 23,
+                                                color:
+                                                    ColorsManager.kWhiteColor,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            Text(
+                                              'Tafasir',
+                                              style: TextStyle(
+                                                fontSize: 23,
+                                                color:
+                                                    ColorsManager.kWhiteColor,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ],

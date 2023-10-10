@@ -21,8 +21,6 @@ class MoshafScreen extends StatelessWidget {
         MainCubit mainCubit = MainCubit.get(context);
 
         return Container(
-          width: double.infinity,
-          height: double.infinity,
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage(
@@ -39,6 +37,9 @@ class MoshafScreen extends StatelessWidget {
               height: screenHeight,
               child: Column(
                 children: [
+                  SizedBox(
+                    height: screenHeight * .08,
+                  ),
                   SizedBox(
                     height: screenHeight * .4,
                     child: Stack(
@@ -60,11 +61,14 @@ class MoshafScreen extends StatelessWidget {
                                 width: screenWidth * .9,
                                 height: screenHeight * .2,
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(11),
-                                    gradient: const LinearGradient(colors: [
+                                  borderRadius: BorderRadius.circular(11),
+                                  gradient: const LinearGradient(
+                                    colors: [
                                       ColorsManager.kGreenColor,
                                       ColorsManager.kBlueColor,
-                                    ])),
+                                    ],
+                                  ),
+                                ),
                               ),
                               SvgPicture.asset(Assets.imagesVector),
                               Positioned(
@@ -83,7 +87,7 @@ class MoshafScreen extends StatelessWidget {
                   ),
                   Expanded(
                     child: ListView.separated(
-                      padding: const EdgeInsets.symmetric(vertical: 30),
+                      padding: const EdgeInsets.symmetric(vertical: 16),
                       physics: const BouncingScrollPhysics(),
                       shrinkWrap: true,
                       itemBuilder: (context, index) {

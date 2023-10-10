@@ -13,21 +13,21 @@ class Assets {
   /// assets/images/icon-home.svg
   static const String imagesIconHome = "assets/images/icon-home.svg";
 
+  /// Assets for imagesIconMetro
+  /// assets/images/Icon-metro.svg
+  static const String imagesIconMetro = "assets/images/Icon-metro.svg";
+
+  /// Assets for imagesIconMetroNext
+  /// assets/images/Icon-metro-next.svg
+  static const String imagesIconMetroNext = "assets/images/Icon-metro-next.svg";
+
   /// Assets for imagesIconMuslim
   /// assets/images/iconMuslim.svg
   static const String imagesIconMuslim = "assets/images/iconMuslim.svg";
 
-  /// Assets for imagesIconmetro
-  /// assets/images/Iconmetro.svg
-  static const String imagesIconmetro = "assets/images/Iconmetro.svg";
-
-  /// Assets for imagesIconmetroNext
-  /// assets/images/Iconmetro-next.svg
-  static const String imagesIconmetroNext = "assets/images/Iconmetro-next.svg";
-
-  /// Assets for imagesIconplay
-  /// assets/images/Iconplay.svg
-  static const String imagesIconplay = "assets/images/Iconplay.svg";
+  /// Assets for imagesIconPlay
+  /// assets/images/Icon-play.svg
+  static const String imagesIconPlay = "assets/images/Icon-play.svg";
 
   /// Assets for imagesLogo
   /// assets/images/logo.svg
@@ -36,6 +36,10 @@ class Assets {
   /// Assets for imagesMenu
   /// assets/images/menu.svg
   static const String imagesMenu = "assets/images/menu.svg";
+
+  /// Assets for imagesPauseIcon
+  /// assets/images/pause_icon.svg
+  static const String imagesPauseIcon = "assets/images/pause_icon.svg";
 
   /// Assets for imagesRadio
   /// assets/images/radio.png

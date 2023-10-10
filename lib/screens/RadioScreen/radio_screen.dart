@@ -35,28 +35,33 @@ class _RadioScreenState extends State<RadioScreen> {
     final screenWidth = MediaQuery.of(context).size.width;
 
     return Container(
-      height: double.infinity,
-      width: double.infinity,
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage(
             Assets.imagesBackground,
           ),
-          fit: BoxFit.fitWidth,
+          fit: BoxFit.fill,
         ),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         extendBody: true,
         body: SizedBox(
-          width: screenWidth,
           height: screenHeight,
-          child: Column(
-            children: [
-              Expanded(child: Image.asset(Assets.imagesRadio)),
-              Expanded(
-                flex: 1,
-                child: FutureBuilder(
+          width: screenWidth,
+          child: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Image.asset(
+                    Assets.imagesRadio,
+                  ),
+                ),
+                Expanded(
+                  child: FutureBuilder(
                     future: Api.getRadios(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
@@ -65,7 +70,13 @@ class _RadioScreenState extends State<RadioScreen> {
                         );
                       } else if (snapshot.hasError) {
                         return const Center(
-                          child: Text("something went wrong"),
+                          child: Text(
+                            "something went wrong",
+                            style: TextStyle(
+                              color: ColorsManager.kWhiteColor,
+                              fontSize: 20,
+                            ),
+                          ),
                         );
                       }
                       var radios = snapshot.data ?? [];
@@ -77,9 +88,11 @@ class _RadioScreenState extends State<RadioScreen> {
                         },
                         itemCount: radios.length,
                       );
-                    }),
-              )
-            ],
+                    },
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
@@ -89,7 +102,7 @@ class _RadioScreenState extends State<RadioScreen> {
 
 class Api {
   static Future<List<Radios>> getRadios() async {
-    Uri url = Uri.https("api.mp3quran.net", "/radios/radio_arabic.json");
+    Uri url = Uri.https("mp3quran.net", "/api/v3/radios");
     http.Response response = await http.get(url);
     var data = jsonDecode(utf8.decode(response.bodyBytes));
     RadioModel radioResponse = RadioModel.fromJson(data);
@@ -114,35 +127,41 @@ class RadioItem extends StatelessWidget {
                 const TextStyle(color: ColorsManager.kWhiteColor, fontSize: 20),
           ),
           const SizedBox(
-            height: 15,
+            height: 50,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               IconButton(
-                onPressed: () async {
-                  audioPlayer.play(
-                    UrlSource(radio.url ?? ""),
-                  );
+                onPressed: () {
+                  audioPlayer.pause();
                 },
-                icon: SvgPicture.asset(Assets.imagesIconmetro),
+                icon: SvgPicture.asset(
+                  Assets.imagesIconMetro,
+                  color: ColorsManager.kWhiteColor,
+                ),
               ),
               const SizedBox(
                 width: 10,
               ),
               IconButton(
                 onPressed: () async {
-                  await audioPlayer.pause();
+                  audioPlayer.play(
+                    UrlSource(radio.url ?? ""),
+                  );
                 },
-                icon: SvgPicture.asset(Assets.imagesIconplay),
+                icon: SvgPicture.asset(
+                  Assets.imagesIconPlay,
+                  color: ColorsManager.kWhiteColor,
+                ),
               ),
               IconButton(
                 onPressed: () async {
-                  await audioPlayer.pause();
+                  audioPlayer.pause();
                 },
                 icon: SvgPicture.asset(
-                  Assets.imagesIconmetroNext,
-                  color: Colors.white,
+                  Assets.imagesIconMetroNext,
+                  color: ColorsManager.kWhiteColor,
                 ),
               ),
             ],

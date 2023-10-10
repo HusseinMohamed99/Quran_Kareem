@@ -31,14 +31,14 @@ class Radios {
   Radios.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    url = json['radio_url'];
+    url = json['url'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['name'] = name;
-    data['radio_url'] = url;
+    data['url'] = url;
     return data;
   }
 }
