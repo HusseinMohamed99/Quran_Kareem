@@ -42,12 +42,20 @@ class HomeScreen extends StatelessWidget {
                     onPressed: () {},
                   ),
                   CircleAvatar(
-                    child: Image.network(
-                        'https://img.freepik.com/free-vector/hand-drawn-flat-design-salat-illustration_23-2149286670.jpg?w=740&t=st=1696751993~exp=1696752593~hmac=d7cbf26e44abb6dd97ae45177fabfe8b76b4b958eef8f6a440ed8e26c40058f1',
-                        errorBuilder: (BuildContext context, Object exception,
-                            StackTrace? stackTrace) {
-                      return const Text('ooops Error with Image');
-                    }),
+                    radius: 25,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(25),
+                      child: Image.network(
+                          'https://img.freepik.com/free-vector/hand-drawn-flat-design-salat-illustration_23-2149286670.jpg?w=740&t=st=1696751993~exp=1696752593~hmac=d7cbf26e44abb6dd97ae45177fabfe8b76b4b958eef8f6a440ed8e26c40058f1',
+                          errorBuilder: (BuildContext context, Object exception,
+                              StackTrace? stackTrace) {
+                        return const Text(
+                          'ooops Error with Image',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 10),
+                        );
+                      }),
+                    ),
                   ),
                 ],
               ),
