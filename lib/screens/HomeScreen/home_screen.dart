@@ -325,48 +325,42 @@ class HomeScreen extends StatelessWidget {
                                       height: 135,
                                       width: 135,
                                     ),
-                                    GestureDetector(
-                                      onTap: () {},
-                                      child: Container(
-                                        width: 137,
-                                        height: 137,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(11),
-                                          gradient: LinearGradient(
-                                            begin: Alignment.topLeft,
-                                            end: Alignment.bottomRight,
-                                            colors: [
-                                              ColorsManager.kGreenColor,
-                                              ColorsManager.kBlueColor
-                                                  .withOpacity(0.2),
-                                            ],
-                                          ),
-                                        ),
-                                        child: const Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              'تفسير',
-                                              style: TextStyle(
-                                                fontSize: 23,
-                                                color:
-                                                    ColorsManager.kWhiteColor,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            Text(
-                                              'Tafasir',
-                                              style: TextStyle(
-                                                fontSize: 23,
-                                                color:
-                                                    ColorsManager.kWhiteColor,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
+                                    Container(
+                                      width: 137,
+                                      height: 137,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(11),
+                                        gradient: LinearGradient(
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomRight,
+                                          colors: [
+                                            ColorsManager.kGreenColor,
+                                            ColorsManager.kBlueColor
+                                                .withOpacity(0.2),
                                           ],
                                         ),
+                                      ),
+                                      child: const Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'تفسير',
+                                            style: TextStyle(
+                                              fontSize: 23,
+                                              color: ColorsManager.kWhiteColor,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          Text(
+                                            'Tafasir',
+                                            style: TextStyle(
+                                              fontSize: 23,
+                                              color: ColorsManager.kWhiteColor,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ],
