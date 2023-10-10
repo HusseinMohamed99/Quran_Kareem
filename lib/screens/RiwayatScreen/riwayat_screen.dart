@@ -12,7 +12,6 @@ class RiwayatScreen extends StatelessWidget {
           image: AssetImage(
             Assets.imagesBackground,
           ),
-          fit: BoxFit.fill,
         ),
       ),
       child: const Scaffold(
