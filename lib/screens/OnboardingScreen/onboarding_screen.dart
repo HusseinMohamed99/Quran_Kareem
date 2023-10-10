@@ -105,24 +105,20 @@ class OnBoardingScreen extends StatelessWidget {
                       return Container(
                         height: 7,
                         width: 7,
-                        margin: const EdgeInsets.symmetric(
-                          horizontal: 4,
-                        ),
+                        margin: const EdgeInsets.symmetric(horizontal: 4),
                         decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: index == 0
-                                ? ColorsManager.kGreenColor
-                                : index == 1
-                                    ? ColorsManager.kWhiteColor.withOpacity(0.2)
-                                    : ColorsManager.kWhiteColor
-                                        .withOpacity(0.2)),
+                          shape: BoxShape.circle,
+                          color: index == 0
+                              ? ColorsManager.kGreenColor
+                              : index == 1
+                                  ? ColorsManager.kWhiteColor.withOpacity(0.2)
+                                  : ColorsManager.kWhiteColor.withOpacity(0.2),
+                        ),
                       );
                     },
                   ),
                 ),
-                SizedBox(
-                  height: screenHeight * 0.03,
-                ),
+                SizedBox(height: screenHeight * 0.03),
               ],
             ),
           ),
