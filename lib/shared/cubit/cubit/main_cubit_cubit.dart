@@ -31,7 +31,6 @@ class MainCubit extends Cubit<MainState> {
       url: rewayah,
     ).then((value) {
       riwayatModel = RiwayatModel.fromJson(value.data);
-      // print(value.data);
       emit(GetRiwayatSuccess());
     }).catchError((error) {
       emit(GetRiwayatError(error.toString()));
@@ -45,7 +44,6 @@ class MainCubit extends Cubit<MainState> {
       url: tafasir,
     ).then((value) {
       tafasirModel = TafasirModel.fromJson(value.data);
-      // print(value.data);
       emit(GetTafasirSuccess());
     }).catchError((error) {
       emit(GetTafasirError(error.toString()));
@@ -59,7 +57,6 @@ class MainCubit extends Cubit<MainState> {
       url: videos,
     ).then((value) {
       videosModel = VideosModel.fromJson(value.data);
-      print(value.data);
       emit(GetVideosSuccess());
     }).catchError((error) {
       emit(GetVideosError(error.toString()));
