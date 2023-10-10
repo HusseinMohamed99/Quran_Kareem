@@ -5,9 +5,17 @@ class Assets {
   /// assets/images/alBasmala.svg
   static const String imagesAlBasmala = "assets/images/alBasmala.svg";
 
+  /// Assets for imagesAlQuran
+  /// assets/images/al-quran.svg
+  static const String imagesAlQuran = "assets/images/al-quran.svg";
+
   /// Assets for imagesBackground
   /// assets/images/Background.png
   static const String imagesBackground = "assets/images/Background.png";
+
+  /// Assets for imagesHelal
+  /// assets/images/helal.svg
+  static const String imagesHelal = "assets/images/helal.svg";
 
   /// Assets for imagesIconHome
   /// assets/images/icon-home.svg
