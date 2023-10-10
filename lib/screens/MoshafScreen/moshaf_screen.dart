@@ -26,7 +26,7 @@ class MoshafScreen extends StatelessWidget {
               image: AssetImage(
                 Assets.imagesBackground,
               ),
-              fit: BoxFit.fill,
+              fit: BoxFit.fitHeight,
             ),
           ),
           child: Scaffold(

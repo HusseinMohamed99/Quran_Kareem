@@ -40,7 +40,7 @@ class _RadioScreenState extends State<RadioScreen> {
           image: AssetImage(
             Assets.imagesBackground,
           ),
-          fit: BoxFit.fill,
+          fit: BoxFit.fitHeight,
         ),
       ),
       child: Scaffold(

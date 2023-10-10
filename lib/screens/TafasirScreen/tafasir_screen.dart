@@ -40,7 +40,7 @@ class _TafasirScreenState extends State<TafasirScreen> {
           image: AssetImage(
             Assets.imagesBackground,
           ),
-          fit: BoxFit.fill,
+          fit: BoxFit.fitHeight,
         ),
       ),
       child: Scaffold(
