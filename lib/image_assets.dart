@@ -37,6 +37,10 @@ class Assets {
   /// assets/images/menu.svg
   static const String imagesMenu = "assets/images/menu.svg";
 
+  /// Assets for imagesOnBoardingLogo
+  /// assets/images/onBoardingLogo.svg
+  static const String imagesOnBoardingLogo = "assets/images/onBoardingLogo.svg";
+
   /// Assets for imagesPauseIcon
   /// assets/images/pause_icon.svg
   static const String imagesPauseIcon = "assets/images/pause_icon.svg";

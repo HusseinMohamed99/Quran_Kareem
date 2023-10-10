@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:moshaf_app/screens/HomeScreen/home_screen.dart';
+import 'package:moshaf_app/screens/OnboardingScreen/onboarding_screen.dart';
 import 'package:moshaf_app/shared/Colors/color_manager.dart';
 import 'package:moshaf_app/shared/bloc_observer.dart';
 import 'package:moshaf_app/shared/cubit/cubit/main_cubit_cubit.dart';
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
               scaffoldBackgroundColor: ColorsManager.kBackgroundColor,
               fontFamily: GoogleFonts.openSans().fontFamily,
             ),
-            home: const HomeScreen(),
+            home: const OnBoardingScreen(),
           );
         },
       ),
