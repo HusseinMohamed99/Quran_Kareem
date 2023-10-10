@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => MainCubit()
             ..getSurahAR()
+            ..getVideo()
             ..getRiwayat()
             ..getTafasir(),
         ),

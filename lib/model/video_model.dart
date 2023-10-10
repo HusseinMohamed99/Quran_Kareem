@@ -1,76 +1,79 @@
 class VideosModel {
-  List<Videos>? videos;
+  VideosModel({
+    required this.videos,
+  });
 
-  VideosModel({this.videos});
+  final List<VideosModelVideo>? videos;
 
-  VideosModel.fromJson(Map<String, dynamic> json) {
-    if (json['videos'] != null) {
-      videos = <Videos>[];
-      json['videos'].forEach((v) {
-        videos!.add(Videos.fromJson(v));
-      });
-    }
+  factory VideosModel.fromJson(Map<String, dynamic> json) {
+    return VideosModel(
+      videos: json["videos"] == null
+          ? []
+          : List<VideosModelVideo>.from(
+              json["videos"]!.map((x) => VideosModelVideo.fromJson(x))),
+    );
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (videos != null) {
-      data['videos'] = videos!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+        "videos": videos!.map((x) => x.toJson()).toList(),
+      };
 }
 
-class Videos {
-  int? id;
-  String? reciterName;
-  List<Videos>? videos;
+class VideosModelVideo {
+  VideosModelVideo({
+    required this.id,
+    required this.reciterName,
+    required this.videos,
+  });
 
-  Videos({this.id, this.reciterName, this.videos});
+  final int? id;
+  final String? reciterName;
+  final List<VideoVideo> videos;
 
-  Videos.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    reciterName = json['reciter_name'];
-    if (json['videos'] != null) {
-      videos = <Videos>[];
-      json['videos'].forEach((v) {
-        videos!.add(Videos.fromJson(v));
-      });
-    }
+  factory VideosModelVideo.fromJson(Map<String, dynamic> json) {
+    return VideosModelVideo(
+      id: json["id"],
+      reciterName: json["reciter_name"],
+      videos: json["videos"] == null
+          ? []
+          : List<VideoVideo>.from(
+              json["videos"]!.map((x) => VideoVideo.fromJson(x))),
+    );
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['reciter_name'] = reciterName;
-    if (videos != null) {
-      data['videos'] = videos!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "reciter_name": reciterName,
+        "videos": videos.map((x) => x.toJson()).toList(),
+      };
 }
 
-class VideosT {
-  int? id;
-  int? videoType;
-  String? videoUrl;
-  String? videoThumbUrl;
+class VideoVideo {
+  VideoVideo({
+    required this.id,
+    required this.videoType,
+    required this.videoUrl,
+    required this.videoThumbUrl,
+  });
 
-  VideosT({this.id, this.videoType, this.videoUrl, this.videoThumbUrl});
+  final int? id;
+  final int? videoType;
+  final String? videoUrl;
+  final String? videoThumbUrl;
 
-  VideosT.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    videoType = json['video_type'];
-    videoUrl = json['video_url'];
-    videoThumbUrl = json['video_thumb_url'];
+  factory VideoVideo.fromJson(Map<String, dynamic> json) {
+    return VideoVideo(
+      id: json["id"],
+      videoType: json["video_type"],
+      videoUrl: json["video_url"],
+      videoThumbUrl: json["video_thumb_url"],
+    );
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['video_type'] = videoType;
-    data['video_url'] = videoUrl;
-    data['video_thumb_url'] = videoThumbUrl;
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "video_type": videoType,
+        "video_url": videoUrl,
+        "video_thumb_url": videoThumbUrl,
+      };
 }

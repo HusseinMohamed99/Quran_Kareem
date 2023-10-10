@@ -45,6 +45,7 @@ class _TafasirScreenState extends State<TafasirScreen> {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
+        extendBody: true,
         body: SizedBox(
           height: screenHeight,
           width: screenWidth,

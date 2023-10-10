@@ -41,3 +41,13 @@ class GetTafasirError extends MainState {
 
   GetTafasirError(this.error);
 }
+
+class GetVideosLoading extends MainState {}
+
+class GetVideosSuccess extends MainState {}
+
+class GetVideosError extends MainState {
+  final String error;
+
+  GetVideosError(this.error);
+}
