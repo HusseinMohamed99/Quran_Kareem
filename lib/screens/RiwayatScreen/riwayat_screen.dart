@@ -40,20 +40,12 @@ class RiwayatScreen extends StatelessWidget {
                   children: [
                     Expanded(
                       flex: 1,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(
-                            Assets.imagesHelal,
-                          ),
-                          SvgPicture.asset(
-                            Assets.imagesAlQuran,
-                          ),
-                        ],
+                      child: SvgPicture.asset(
+                        Assets.imagesGroup,
                       ),
                     ),
                     Expanded(
+                      flex: 2,
                       child: ListView.separated(
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         physics: const BouncingScrollPhysics(),
