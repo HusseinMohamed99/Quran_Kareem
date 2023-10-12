@@ -31,10 +31,11 @@ The Quran Kareem app is a valuable resource for Muslims who want to deepen their
     <img src="https://github.com/HusseinMohamed99/Moshaf_App/assets/84459939/769c7f72-b776-4d5d-8ac7-e1b39f386d92" width="250" />
     <img src="https://github.com/HusseinMohamed99/Moshaf_App/assets/84459939/bf5894ce-9fd3-4f2a-a850-2189faf9f4aa" width="250" />
     <img src="https://github.com/HusseinMohamed99/Moshaf_App/assets/84459939/85b1d244-f4b9-41fb-8090-e93ad787af10" width="250" />
+    <img src="https://github.com/HusseinMohamed99/Moshaf_App/assets/84459939/f8ccea82-07ae-4361-bd8a-c62eba733cbf" width="250" />
         <img src="https://github.com/HusseinMohamed99/Moshaf_App/assets/84459939/2aa78bbe-4b11-477b-948d-e78fafd1b31c" width="250" />
             <img src="https://github.com/HusseinMohamed99/Moshaf_App/assets/84459939/de4198a2-401d-4aa8-9c6f-9ef9f2ccfc92" width="250" />
                 <img src="https://github.com/HusseinMohamed99/Moshaf_App/assets/84459939/fa96b51c-68fa-4d4d-8d4e-55868dacd31d" width="250" />
-                    <img src="https://github.com/HusseinMohamed99/Moshaf_App/assets/84459939/5350a10e-ecae-426f-aeb5-6874e50d3a16" width="250" />
+                    
 
   </p>
 
