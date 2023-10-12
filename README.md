@@ -46,7 +46,8 @@ The Quran Kareem app is a valuable resource for Muslims who want to deepen their
 
 <p>
 
-  <video src="https://github.com/HusseinMohamed99/Moshaf_App/assets/84459939/ea4dda8f-a981-4bd3-b5d9-fb76f136bf96" width="180" /></video>| <video src="https://github.com/HusseinMohamed99/Moshaf_App/assets/84459939/88c267cb-04bc-4cc5-9778-f2e58373c34c" width="180" /></video>
+  <video src="https://github.com/HusseinMohamed99/Moshaf_App/assets/84459939/ea4dda8f-a981-4bd3-b5d9-fb76f136bf96" width="180" /></video>
+  <video src="https://github.com/HusseinMohamed99/Moshaf_App/assets/84459939/88c267cb-04bc-4cc5-9778-f2e58373c34c" width="180" /></video>
 
   </p> 
 
