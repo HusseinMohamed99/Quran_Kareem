@@ -8,5 +8,5 @@ class ColorsManager {
   static const Color kBlackColor = Color(0xFF19191B);
   static const Color kYellowColor = Color(0xFFF2A33A);
   static const Color kWhiteColor = Color(0xFFFFFFFF);
-  static const Color kGreyColor = Color(0xFF767680);
+  static const Color kGreyColor = Color.fromRGBO(255, 255, 255, 35);
 }

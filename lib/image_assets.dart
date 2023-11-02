@@ -13,6 +13,10 @@ class Assets {
   /// assets/images/Background.png
   static const String imagesBackground = "assets/images/Background.png";
 
+  /// Assets for imagesError
+  /// assets/images/error.svg
+  static const String imagesError = "assets/images/error.svg";
+
   /// Assets for imagesGroup
   /// assets/images/Group.svg
   static const String imagesGroup = "assets/images/Group.svg";
@@ -57,9 +61,25 @@ class Assets {
   /// assets/images/pause_icon.svg
   static const String imagesPauseIcon = "assets/images/pause_icon.svg";
 
+  /// Assets for imagesPlay
+  /// assets/images/Play.svg
+  static const String imagesPlay = "assets/images/Play.svg";
+
+  /// Assets for imagesQuran
+  /// assets/images/Quran.svg
+  static const String imagesQuran = "assets/images/Quran.svg";
+
   /// Assets for imagesRadio
   /// assets/images/radio.png
   static const String imagesRadio = "assets/images/radio.png";
+
+  /// Assets for imagesSave
+  /// assets/images/Save.svg
+  static const String imagesSave = "assets/images/Save.svg";
+
+  /// Assets for imagesShare
+  /// assets/images/Share.svg
+  static const String imagesShare = "assets/images/Share.svg";
 
   /// Assets for imagesVector
   /// assets/images/Vector.svg

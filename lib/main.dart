@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:moshaf_app/screens/OnboardingScreen/onboarding_screen.dart';
+import 'package:moshaf_app/screens/Home/home_page.dart';
 import 'package:moshaf_app/shared/Colors/color_manager.dart';
 import 'package:moshaf_app/shared/bloc_observer.dart';
-import 'package:moshaf_app/shared/cubit/cubit/main_cubit_cubit.dart';
-import 'package:moshaf_app/shared/cubit/cubit/main_cubit_state.dart';
+import 'package:moshaf_app/shared/components/app_font.dart';
+import 'package:moshaf_app/shared/cubit/cubit/internet_bloc.dart';
+import 'package:moshaf_app/shared/cubit/cubit/main_cubit.dart';
+import 'package:moshaf_app/shared/cubit/cubit/main_state.dart';
 import 'package:moshaf_app/shared/Network/dio_helper.dart';
 
 void main() async {
@@ -27,10 +28,16 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => MainCubit()
-            ..getSurahAR()
+            ..getSurahEN()
             ..getVideo()
             ..getRiwayat()
-            ..getTafasir(),
+            ..getTafasir()
+            ..getQuran()
+            ..getReciters()
+            ..getRadio(),
+        ),
+        BlocProvider(
+          create: (context) => InternetCubit(),
         ),
       ],
       child: BlocConsumer<MainCubit, MainState>(
@@ -43,12 +50,12 @@ class MyApp extends StatelessWidget {
 
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            title: 'Moshaf App',
+            title: 'QURAN KAREEM',
             theme: ThemeData(
               scaffoldBackgroundColor: ColorsManager.kBackgroundColor,
-              fontFamily: GoogleFonts.openSans().fontFamily,
+              fontFamily: AppFonts.fontFamily,
             ),
-            home: const OnBoardingScreen(),
+            home: const HomePage(),
           );
         },
       ),

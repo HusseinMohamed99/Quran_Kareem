@@ -51,3 +51,23 @@ class GetVideosError extends MainState {
 
   GetVideosError(this.error);
 }
+
+class GetQuranLoading extends MainState {}
+
+class GetQuranSuccess extends MainState {}
+
+class GetQuranError extends MainState {
+  final String error;
+
+  GetQuranError(this.error);
+}
+
+class GetRecitersLoading extends MainState {}
+
+class GetRecitersSuccess extends MainState {}
+
+class GetRecitersError extends MainState {
+  final String error;
+
+  GetRecitersError(this.error);
+}

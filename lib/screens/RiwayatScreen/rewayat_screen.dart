@@ -3,17 +3,19 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:moshaf_app/image_assets.dart';
+import 'package:moshaf_app/shared/Colors/color_manager.dart';
 import 'package:moshaf_app/shared/cubit/cubit/main_cubit.dart';
 import 'package:moshaf_app/shared/cubit/cubit/main_state.dart';
-import 'package:moshaf_app/shared/widget/tafasir_widget.dart';
+import 'package:moshaf_app/shared/widget/rewayet_widget.dart';
 
-class TafasirScreen extends StatelessWidget {
-  const TafasirScreen({super.key});
+class RiwayatScreen extends StatelessWidget {
+  const RiwayatScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
+
     return BlocConsumer<MainCubit, MainState>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -44,33 +46,33 @@ class TafasirScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         flex: 1,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SvgPicture.asset(
-                              Assets.imagesHelal,
-                            ),
-                            SvgPicture.asset(
-                              Assets.imagesAlQuran,
-                            ),
-                          ],
+                        child: SvgPicture.asset(
+                          Assets.imagesGroup,
                         ),
                       ),
                       Expanded(
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          physics: const PageScrollPhysics(),
+                        flex: 2,
+                        child: ListView.separated(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          physics: const BouncingScrollPhysics(),
+                          shrinkWrap: true,
                           itemBuilder: (context, index) {
-                            return TafasirWidget(
-                              tafasirModel: mainCubit.tafasirModel!,
+                            return RiwayatWidget(
+                              riwayatModel: mainCubit.riwayatModel!,
                               index: index,
                             );
                           },
-                          itemCount:
-                              mainCubit.tafasirModel!.tafasir!.soar!.length,
+                          separatorBuilder: (context, index) {
+                            return const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 25),
+                              child: Divider(
+                                color: ColorsManager.kWhiteColor,
+                              ),
+                            );
+                          },
+                          itemCount: mainCubit.riwayatModel!.riwayat!.length,
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
