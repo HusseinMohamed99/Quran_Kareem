@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:moshaf_app/image_assets.dart';
 import 'package:moshaf_app/screens/HomeScreen/home_screen.dart';
 import 'package:moshaf_app/shared/Colors/color_manager.dart';
