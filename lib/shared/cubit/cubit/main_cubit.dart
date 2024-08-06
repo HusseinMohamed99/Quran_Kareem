@@ -19,7 +19,7 @@ class MainCubit extends Cubit<MainState> {
   void getSurahEN() {
     emit(GetSurahLoading());
     DioHelper.getData(
-      url: "$surah?language=eng",
+      url: '$surah?language=eng',
     ).then((value) {
       surahModel = SurahModel.fromJson(value.data);
       emit(GetSurahSuccess());

@@ -45,7 +45,7 @@ class RecitersDetailsScreen extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "القارئ:  ${recitersModel.reciters![number].name!}",
+                    'القارئ:  ${recitersModel.reciters![number].name!}',
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       color: ColorsManager.kWhiteColor,

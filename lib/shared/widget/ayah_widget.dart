@@ -91,7 +91,7 @@ class _AyahWidgetState extends State<AyahWidget> {
                       audioPlayer.play(
                         UrlSource(widget.surahs.data!.surah![widget.number]
                                 .ayahs![widget.index].audio ??
-                            ""),
+                            ''),
                       );
                     },
                   );
@@ -100,7 +100,10 @@ class _AyahWidgetState extends State<AyahWidget> {
                   audioPlayer.state == PlayerState.playing
                       ? Assets.imagesPauseIcon
                       : Assets.imagesPlay,
-                  color: ColorsManager.kGreenColor,
+                  colorFilter: const ColorFilter.mode(
+                    ColorsManager.kGreenColor,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
               IconButton(

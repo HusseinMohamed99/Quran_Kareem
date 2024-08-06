@@ -16,13 +16,12 @@ class InternetCubit extends Cubit<InternetState> {
 // Start listening to changes in connectivity when an instance is created.
     _connectivitySubscription =
         _connectivity.onConnectivityChanged.listen((result) {
-      if (result == ConnectivityResult.mobile ||
-          result == ConnectivityResult.wifi) {
-        // If mobile or Wi-Fi connectivity is detected, emit 'gained' state.
-        emit(InternetState.gained);
-      } else {
+      if (result == ConnectivityResult.none) {
         // If no mobile or Wi-Fi connectivity is detected, emit 'lost' state.
         emit(InternetState.lost);
+      } else {
+        // If mobile or Wi-Fi connectivity is detected, emit 'gained' state.
+        emit(InternetState.gained);
       }
     });
   }

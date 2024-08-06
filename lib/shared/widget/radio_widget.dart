@@ -37,7 +37,7 @@ class _RadioWidgetState extends State<RadioWidget> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            widget.radioModel.radios![widget.index].name ?? "",
+            widget.radioModel.radios![widget.index].name ?? '',
             style:
                 const TextStyle(color: ColorsManager.kWhiteColor, fontSize: 20),
           ),
@@ -53,7 +53,10 @@ class _RadioWidgetState extends State<RadioWidget> {
                 },
                 icon: SvgPicture.asset(
                   Assets.imagesIconMetro,
-                  color: ColorsManager.kWhiteColor,
+                  colorFilter: const ColorFilter.mode(
+                    ColorsManager.kWhiteColor,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
               const SizedBox(
@@ -67,8 +70,9 @@ class _RadioWidgetState extends State<RadioWidget> {
                           ? audioPlayer.pause()
                           : audioPlayer.play(
                               UrlSource(
-                                  widget.radioModel.radios![widget.index].url ??
-                                      ""),
+                                widget.radioModel.radios![widget.index].url ??
+                                    '',
+                              ),
                             );
                     },
                   );
@@ -77,16 +81,22 @@ class _RadioWidgetState extends State<RadioWidget> {
                   audioPlayer.state == PlayerState.playing
                       ? Assets.imagesPauseIcon
                       : Assets.imagesIconPlay,
-                  color: ColorsManager.kWhiteColor,
+                  colorFilter: const ColorFilter.mode(
+                    ColorsManager.kWhiteColor,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
               IconButton(
                 onPressed: () async {
-                  audioPlayer.pause();
+                  await audioPlayer.pause();
                 },
                 icon: SvgPicture.asset(
                   Assets.imagesIconMetroNext,
-                  color: ColorsManager.kWhiteColor,
+                  colorFilter: const ColorFilter.mode(
+                    ColorsManager.kWhiteColor,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
             ],

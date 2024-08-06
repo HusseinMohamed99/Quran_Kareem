@@ -102,7 +102,10 @@ class _VideosDetailsWidgetState extends State<VideosDetailsWidget> {
                 _controller.value.isPlaying
                     ? Assets.imagesPauseIcon
                     : Assets.imagesIconPlay,
-                color: ColorsManager.kWhiteColor,
+                colorFilter: const ColorFilter.mode(
+                  ColorsManager.kWhiteColor,
+                  BlendMode.srcIn,
+                ),
               ),
             ),
             IconButton(
@@ -113,7 +116,10 @@ class _VideosDetailsWidgetState extends State<VideosDetailsWidget> {
               icon: SvgPicture.asset(
                 Assets.imagesShare,
                 height: 40,
-                color: ColorsManager.kWhiteColor,
+                colorFilter: const ColorFilter.mode(
+                  ColorsManager.kWhiteColor,
+                  BlendMode.srcIn,
+                ),
               ),
             ),
           ],

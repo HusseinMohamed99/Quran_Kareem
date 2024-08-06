@@ -25,9 +25,7 @@ class GridWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: GestureDetector(
-        onTap: () {
-          function();
-        },
+        onTap: function,
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [

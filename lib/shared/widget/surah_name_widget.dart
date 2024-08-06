@@ -101,7 +101,7 @@ class SurahNameWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "${mainCubit.ayatModel!.data!.surah![number].ayahs!.length.toString()} verses"
+                            '${mainCubit.ayatModel!.data!.surah![number].ayahs!.length.toString()} verses'
                                 .toUpperCase(),
                             style: const TextStyle(
                               fontSize: 15,

@@ -41,7 +41,7 @@ class _TafasirWidgetState extends State<TafasirWidget> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            widget.tafasirModel.tafasir!.soar![widget.index].name ?? "",
+            widget.tafasirModel.tafasir!.soar![widget.index].name ?? '',
             style:
                 const TextStyle(color: ColorsManager.kWhiteColor, fontSize: 20),
           ),
@@ -57,7 +57,10 @@ class _TafasirWidgetState extends State<TafasirWidget> {
                 },
                 icon: SvgPicture.asset(
                   Assets.imagesIconMetro,
-                  color: ColorsManager.kWhiteColor,
+                  colorFilter: const ColorFilter.mode(
+                    ColorsManager.kWhiteColor,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
               const SizedBox(
@@ -71,7 +74,7 @@ class _TafasirWidgetState extends State<TafasirWidget> {
                         : audioPlayer.play(
                             UrlSource(widget.tafasirModel.tafasir!
                                     .soar![widget.index].url ??
-                                ""),
+                                ''),
                           );
                   });
                 },
@@ -79,16 +82,22 @@ class _TafasirWidgetState extends State<TafasirWidget> {
                   audioPlayer.state == PlayerState.playing
                       ? Assets.imagesPauseIcon
                       : Assets.imagesIconPlay,
-                  color: ColorsManager.kWhiteColor,
+                  colorFilter: const ColorFilter.mode(
+                    ColorsManager.kWhiteColor,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
               IconButton(
                 onPressed: () async {
-                  audioPlayer.pause();
+                  await audioPlayer.pause();
                 },
                 icon: SvgPicture.asset(
                   Assets.imagesIconMetroNext,
-                  color: ColorsManager.kWhiteColor,
+                  colorFilter: const ColorFilter.mode(
+                    ColorsManager.kWhiteColor,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
             ],
