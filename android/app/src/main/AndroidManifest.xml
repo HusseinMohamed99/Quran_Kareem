@@ -2,7 +2,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <application
-        android:label="moshaf_app"
+        android:label="Quran Kareem"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
