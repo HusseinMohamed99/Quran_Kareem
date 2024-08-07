@@ -352,14 +352,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.4"
-  get_it:
-    dependency: "direct main"
-    description:
-      name: get_it
-      sha256: d85128a5dae4ea777324730dc65edd9c9f43155c109d5cc0a69cab74139fbac1
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.7.0"
   glob:
     dependency: transitive
     description:
@@ -656,14 +648,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.1"
-  rename:
-    dependency: "direct main"
-    description:
-      name: rename
-      sha256: "6ef5daf4b11130e71d93630cfb70725e5a35b19039739cfcd2b272c834ba25fe"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.2"
   rxdart:
     dependency: transitive
     description:
