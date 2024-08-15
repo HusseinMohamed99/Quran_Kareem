@@ -12,7 +12,7 @@ import 'package:moshaf_app/main.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MoshafApplication());
+    await tester.pumpWidget(const QuranKareemApp());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

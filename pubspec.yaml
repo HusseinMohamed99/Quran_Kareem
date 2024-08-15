@@ -1,5 +1,5 @@
 name: 'moshaf_app'
-version: '1.0.0+3'
+version: 1.0.0+3
 publish_to: none
 environment: 
   sdk: '>=3.4.4 <4.0.0'
@@ -9,7 +9,6 @@ dependencies:
   bloc: '^8.1.2'
   connectivity_plus: '^6.0.4'
   cupertino_icons: '^1.0.2'
-  device_preview: '^1.2.0'
   dio: '^5.3.3'
   flutter: 
     sdk: flutter
