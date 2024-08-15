@@ -1,14 +1,16 @@
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moshaf_app/screens/Home/home_page.dart';
 import 'package:moshaf_app/shared/Colors/color_manager.dart';
+import 'package:moshaf_app/shared/Network/dio_helper.dart';
 import 'package:moshaf_app/shared/bloc_observer.dart';
 import 'package:moshaf_app/shared/components/app_font.dart';
 import 'package:moshaf_app/shared/cubit/cubit/internet_bloc.dart';
 import 'package:moshaf_app/shared/cubit/cubit/main_cubit.dart';
 import 'package:moshaf_app/shared/cubit/cubit/main_state.dart';
-import 'package:moshaf_app/shared/Network/dio_helper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,11 +18,16 @@ void main() async {
 
   DioHelper.init();
 
-  runApp(const MyApp());
+  runApp(
+    DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) => const QuranKareemApp(), // Wrap your app
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class QuranKareemApp extends StatelessWidget {
+  const QuranKareemApp({super.key});
 
   @override
   Widget build(BuildContext context) {
