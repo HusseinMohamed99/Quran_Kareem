@@ -29,10 +29,10 @@ class QuranKareemApp extends StatelessWidget {
         BlocProvider(
           create: (context) => MainCubit()
             ..getSurahEN()
+            ..getQuran()
             ..getVideo()
             ..getRiwayat()
             ..getTafasir()
-            ..getQuran()
             ..getReciters()
             ..getRadio(),
         ),

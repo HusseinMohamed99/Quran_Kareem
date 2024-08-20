@@ -5,6 +5,9 @@
         "Basmala",
         "helal",
         "LTWH",
+        "makkia",
+        "Meccan",
+        "Medinian",
         "moshaf",
         "ooops",
         "pubspec",
@@ -29,5 +32,9 @@
         "روايات",
         "سورة",
         "فيديوهات"
-    ]
+    ],
+    "editor.tokenColorCustomizations": {
+        "comments": "",
+        "textMateRules": []
+    }
 }

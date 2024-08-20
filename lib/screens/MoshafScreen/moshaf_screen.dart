@@ -74,7 +74,7 @@ class MoshafScreen extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                SvgPicture.asset(Assets.imagesVector),
+                                SvgPicture.asset(Assets.imagesVectorOptimized),
                                 Positioned(
                                   top: screenHeight * .08,
                                   child: SvgPicture.asset(
@@ -95,11 +95,16 @@ class MoshafScreen extends StatelessWidget {
                         physics: const BouncingScrollPhysics(),
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
-                          return SurahWidget(
-                            surahModel: mainCubit.surahModel!,
-                            number: index,
-                            surahs: mainCubit.ayatModel!,
-                          );
+                          if (mainCubit.surahModel!.suwar!.isEmpty ||
+                              mainCubit.surahModel?.suwar == null) {
+                            return const CircularProgressIndicator.adaptive();
+                          } else {
+                            return SurahWidget(
+                              surahModel: mainCubit.surahModel!,
+                              number: index,
+                              surahs: mainCubit.ayatModel!,
+                            );
+                          }
                         },
                         separatorBuilder: (context, index) {
                           return const Padding(

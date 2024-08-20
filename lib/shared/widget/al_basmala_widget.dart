@@ -45,7 +45,7 @@ class AlBasmalaWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                SvgPicture.asset(Assets.imagesVector),
+                SvgPicture.asset(Assets.imagesVectorOptimized),
                 Positioned(
                   top: screenHeight * .08,
                   child: SvgPicture.asset(

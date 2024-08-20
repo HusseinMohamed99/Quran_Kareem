@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:moshaf_app/image_assets.dart';
-import 'package:moshaf_app/shared/Colors/color_manager.dart';
 import 'package:moshaf_app/screens/MoshafScreen/moshaf_screen.dart';
 import 'package:moshaf_app/screens/RadioScreen/radio_screen.dart';
 import 'package:moshaf_app/screens/RecitersScreen/reciters_screen.dart';
 import 'package:moshaf_app/screens/RiwayatScreen/rewayat_screen.dart';
 import 'package:moshaf_app/screens/TafasirScreen/tafasir_screen.dart';
 import 'package:moshaf_app/screens/VideoScreen/video_screen.dart';
+import 'package:moshaf_app/shared/Colors/color_manager.dart';
 import 'package:moshaf_app/shared/components/navigator.dart';
 
 class GridWidget extends StatelessWidget {

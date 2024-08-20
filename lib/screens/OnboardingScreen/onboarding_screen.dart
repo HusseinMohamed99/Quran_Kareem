@@ -44,6 +44,7 @@ class OnBoardingScreen extends StatelessWidget {
                   ),
                   SvgPicture.asset(
                     Assets.imagesOnBoardingLogo,
+                    allowDrawingOutsideViewBox: true,
                   ),
                   SizedBox(
                     height: screenHeight <= 600

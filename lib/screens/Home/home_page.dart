@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:moshaf_app/image_assets.dart';
 import 'package:moshaf_app/screens/OnboardingScreen/onboarding_screen.dart';
 import 'package:moshaf_app/shared/cubit/cubit/internet_bloc.dart';
 import 'package:moshaf_app/shared/enum/enum.dart';
@@ -40,7 +41,7 @@ class HomePage extends StatelessWidget {
                 // Show your information when connected
                 return const OnBoardingScreen();
               } else if (state == InternetState.lost) {
-                return SvgPicture.asset('assets/images/error.svg');
+                return SvgPicture.asset(Assets.imagesErrorOptimized);
               } else {
                 return const CircularProgressIndicator(); // Loading indicator
               }
