@@ -16,23 +16,29 @@ import 'package:moshaf_app/shared/cubit/cubit/main_state.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize Firebase and set up Crashlytics error handling
+  await _initializeFirebase();
+
+  // Initialize Dio helper and Bloc observer
+  DioHelper.init();
+  Bloc.observer = MyBlocObserver();
+
+  runApp(const QuranKareemApp());
+}
+
+Future<void> _initializeFirebase() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  // Pass all uncaught "fatal" errors from the framework to Crashlytics
+  // Set up Firebase Crashlytics error handling
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
-  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
-  // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
+
   PlatformDispatcher.instance.onError = (error, stack) {
     FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
     return true;
   };
-  Bloc.observer = MyBlocObserver();
-
-  DioHelper.init();
-
-  runApp(const QuranKareemApp());
 }
 
 class QuranKareemApp extends StatelessWidget {
@@ -44,37 +50,50 @@ class QuranKareemApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => MainCubit()
-            ..getSurahEN()
-            ..getQuran()
-            ..getVideo()
-            ..getRiwayat()
-            ..getTafasir()
-            ..getReciters()
-            ..getRadio(),
+            ..initializeAppData(), // Consolidating cubit initialization calls
         ),
         BlocProvider(
           create: (context) => InternetCubit(),
         ),
       ],
-      child: BlocConsumer<MainCubit, MainState>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          SystemChrome.setPreferredOrientations([
-            DeviceOrientation.portraitUp,
-            DeviceOrientation.portraitDown,
-          ]);
-
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'QURAN KAREEM',
-            theme: ThemeData(
-              scaffoldBackgroundColor: ColorsManager.kBackgroundColor,
-              fontFamily: AppFonts.fontFamily,
-            ),
-            home: const HomePage(),
-          );
-        },
-      ),
+      child: _buildApp(),
     );
+  }
+
+  Widget _buildApp() {
+    return BlocConsumer<MainCubit, MainState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        _setPreferredOrientations();
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'QURAN KAREEM',
+          theme: ThemeData(
+            scaffoldBackgroundColor: ColorsManager.kBackgroundColor,
+            fontFamily: AppFonts.fontFamily,
+          ),
+          home: const HomePage(),
+        );
+      },
+    );
+  }
+
+  void _setPreferredOrientations() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+  }
+}
+
+extension MainCubitExtensions on MainCubit {
+  void initializeAppData() {
+    getSurahEN();
+    getQuran();
+    getVideo();
+    getRiwayat();
+    getTafasir();
+    getReciters();
+    getRadio();
   }
 }
