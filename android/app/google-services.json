@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "779662642359",
+    "project_id": "qurankareem-7094c",
+    "storage_bucket": "qurankareem-7094c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779662642359:android:f87a70112333b144595132",
+        "android_client_info": {
+          "package_name": "com.Dev.quranKareem"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8_oilrF2Ytz6QTLRtmb5XYxO2TCVJ3LU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
