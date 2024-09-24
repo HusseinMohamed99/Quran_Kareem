@@ -89,6 +89,7 @@ class _VideosDetailsWidgetState extends State<VideosDetailsWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconButton(
+              iconSize: 24,
               onPressed: () {
                 setState(
                   () {
@@ -102,6 +103,8 @@ class _VideosDetailsWidgetState extends State<VideosDetailsWidget> {
                 _controller.value.isPlaying
                     ? Assets.imagesPauseIcon
                     : Assets.imagesIconPlay,
+                width: 24,
+                height: 24,
                 colorFilter: const ColorFilter.mode(
                   ColorsManager.kWhiteColor,
                   BlendMode.srcIn,

@@ -85,6 +85,7 @@ class _AyahWidgetState extends State<AyahWidget> {
                 icon: SvgPicture.asset(Assets.imagesShare),
               ),
               IconButton(
+                iconSize: 24,
                 onPressed: () {
                   setState(
                     () {
