@@ -50,8 +50,14 @@ class RadioScreen extends StatelessWidget {
                             Assets.imagesRadio,
                           ),
                         ),
-                        if (MainState is GetRadioLoading)
-                          const CircularProgressIndicator.adaptive()
+                        if (state is GetRadioLoading)
+                          const Expanded(
+                            child: Center(
+                              child: CircularProgressIndicator.adaptive(
+                                backgroundColor: Colors.amber,
+                              ),
+                            ),
+                          )
                         else
                           Expanded(
                             child: ListView.builder(

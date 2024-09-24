@@ -91,8 +91,5 @@ extension MainCubitExtensions on MainCubit {
     getSurahEN();
     getQuran();
     getVideo();
-    getRiwayat();
-    getTafasir();
-    getReciters();
   }
 }
