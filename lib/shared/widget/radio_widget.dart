@@ -48,10 +48,13 @@ class _RadioWidgetState extends State<RadioWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               IconButton(
+                iconSize: 24,
                 onPressed: () {
                   audioPlayer.pause();
                 },
                 icon: SvgPicture.asset(
+                  width: 24,
+                  height: 24,
                   Assets.imagesIconMetro,
                   colorFilter: const ColorFilter.mode(
                     ColorsManager.kWhiteColor,
@@ -63,6 +66,7 @@ class _RadioWidgetState extends State<RadioWidget> {
                 width: 10,
               ),
               IconButton(
+                iconSize: 24,
                 onPressed: () {
                   setState(
                     () {
@@ -81,6 +85,8 @@ class _RadioWidgetState extends State<RadioWidget> {
                   audioPlayer.state == PlayerState.playing
                       ? Assets.imagesPauseIcon
                       : Assets.imagesIconPlay,
+                  width: 24,
+                  height: 24,
                   colorFilter: const ColorFilter.mode(
                     ColorsManager.kWhiteColor,
                     BlendMode.srcIn,
@@ -88,11 +94,14 @@ class _RadioWidgetState extends State<RadioWidget> {
                 ),
               ),
               IconButton(
+                iconSize: 24,
                 onPressed: () async {
                   await audioPlayer.pause();
                 },
                 icon: SvgPicture.asset(
                   Assets.imagesIconMetroNext,
+                  width: 24,
+                  height: 24,
                   colorFilter: const ColorFilter.mode(
                     ColorsManager.kWhiteColor,
                     BlendMode.srcIn,

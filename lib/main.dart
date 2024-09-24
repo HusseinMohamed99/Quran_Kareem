@@ -94,6 +94,5 @@ extension MainCubitExtensions on MainCubit {
     getRiwayat();
     getTafasir();
     getReciters();
-    getRadio();
   }
 }
