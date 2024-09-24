@@ -51,12 +51,13 @@ class VideoDetailsScreen extends StatelessWidget {
                         itemBuilder: (context, index) {
                           return VideosDetailsWidget(
                             index: index,
-                            videosModel: mainCubit.videosModel!,
+                            videosModel: mainCubit.videosModel ?? VideosModel(),
                             number: number,
                           );
                         },
-                        itemCount: mainCubit
-                            .videosModel!.videos![number].videosVideos!.length,
+                        itemCount: mainCubit.videosModel?.videos?[number]
+                                .videosVideos?.length ??
+                            0,
                         separatorBuilder: (BuildContext context, int index) {
                           return const SizedBox(
                             height: 40,

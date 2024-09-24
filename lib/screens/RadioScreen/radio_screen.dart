@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moshaf_app/image_assets.dart';
+import 'package:moshaf_app/model/radio_model.dart';
 import 'package:moshaf_app/shared/cubit/cubit/main_cubit.dart';
 import 'package:moshaf_app/shared/cubit/cubit/main_state.dart';
 import 'package:moshaf_app/shared/widget/radio_widget.dart';
@@ -65,7 +66,8 @@ class RadioScreen extends StatelessWidget {
                               physics: const PageScrollPhysics(),
                               itemBuilder: (context, index) {
                                 return RadioWidget(
-                                  radioModel: mainCubit.radioModel!,
+                                  radioModel:
+                                      mainCubit.radioModel ?? RadioModel(),
                                   index: index,
                                 );
                               },

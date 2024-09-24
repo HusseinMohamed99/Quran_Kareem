@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:moshaf_app/image_assets.dart';
+import 'package:moshaf_app/model/video_model.dart';
 import 'package:moshaf_app/shared/cubit/cubit/main_cubit.dart';
 import 'package:moshaf_app/shared/cubit/cubit/main_state.dart';
 import 'package:moshaf_app/shared/widget/video_widget.dart';
@@ -67,10 +68,12 @@ class VideoScreen extends StatelessWidget {
                             itemBuilder: (context, index) {
                               return VideosWidget(
                                 index: index,
-                                videoModel: mainCubit.videosModel!,
+                                videoModel:
+                                    mainCubit.videosModel ?? VideosModel(),
                               );
                             },
-                            itemCount: mainCubit.videosModel!.videos!.length,
+                            itemCount:
+                                mainCubit.videosModel?.videos?.length ?? 0,
                             separatorBuilder:
                                 (BuildContext context, int index) {
                               return const SizedBox(

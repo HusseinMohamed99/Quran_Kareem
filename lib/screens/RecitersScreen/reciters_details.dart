@@ -45,7 +45,7 @@ class RecitersDetailsScreen extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'القارئ:  ${recitersModel.reciters![number].name!}',
+                    'القارئ:  ${recitersModel.reciters?[number].name ?? ''}',
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       color: ColorsManager.kWhiteColor,
@@ -57,13 +57,15 @@ class RecitersDetailsScreen extends StatelessWidget {
                       scrollDirection: Axis.vertical,
                       itemBuilder: (context, index) {
                         return RecitersDetailsWidget(
-                          recitersModel: mainCubit.recitersModel!,
+                          recitersModel:
+                              mainCubit.recitersModel ?? RecitersModel(),
                           index: index,
                           number: number,
                         );
                       },
-                      itemCount: mainCubit
-                          .recitersModel!.reciters![number].moshaf!.length,
+                      itemCount: mainCubit.recitersModel?.reciters?[number]
+                              .moshaf?.length ??
+                          0,
                       separatorBuilder: (BuildContext context, int index) {
                         return const SizedBox(
                           height: 60,

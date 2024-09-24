@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:moshaf_app/image_assets.dart';
+import 'package:moshaf_app/model/riwayat_model.dart';
 import 'package:moshaf_app/shared/Colors/color_manager.dart';
 import 'package:moshaf_app/shared/cubit/cubit/main_cubit.dart';
 import 'package:moshaf_app/shared/cubit/cubit/main_state.dart';
@@ -69,7 +70,8 @@ class RiwayatScreen extends StatelessWidget {
                               shrinkWrap: true,
                               itemBuilder: (context, index) {
                                 return RiwayatWidget(
-                                  riwayatModel: mainCubit.riwayatModel!,
+                                  riwayatModel:
+                                      mainCubit.riwayatModel ?? RiwayatModel(),
                                   index: index,
                                 );
                               },
@@ -82,7 +84,7 @@ class RiwayatScreen extends StatelessWidget {
                                 );
                               },
                               itemCount:
-                                  mainCubit.riwayatModel!.riwayat!.length,
+                                  mainCubit.riwayatModel?.riwayat?.length ?? 0,
                             ),
                           ),
                       ],
