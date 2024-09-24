@@ -11,8 +11,6 @@ import 'package:moshaf_app/shared/Network/dio_helper.dart';
 import 'package:moshaf_app/shared/bloc_observer.dart';
 import 'package:moshaf_app/shared/components/app_font.dart';
 import 'package:moshaf_app/shared/cubit/cubit/internet_bloc.dart';
-import 'package:moshaf_app/shared/cubit/cubit/main_cubit.dart';
-import 'package:moshaf_app/shared/cubit/cubit/main_state.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,7 +47,10 @@ class QuranKareemApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => InternetCubit(),
+          create: (context) {
+            _setPreferredOrientations();
+            return InternetCubit();
+          },
         ),
       ],
       child: _buildApp(),
