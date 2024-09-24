@@ -49,10 +49,6 @@ class QuranKareemApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => MainCubit()
-            ..initializeAppData(), // Consolidating cubit initialization calls
-        ),
-        BlocProvider(
           create: (context) => InternetCubit(),
         ),
       ],
@@ -61,20 +57,14 @@ class QuranKareemApp extends StatelessWidget {
   }
 
   Widget _buildApp() {
-    return BlocConsumer<MainCubit, MainState>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        _setPreferredOrientations();
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'QURAN KAREEM',
-          theme: ThemeData(
-            scaffoldBackgroundColor: ColorsManager.kBackgroundColor,
-            fontFamily: AppFonts.fontFamily,
-          ),
-          home: const HomePage(),
-        );
-      },
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'QURAN KAREEM',
+      theme: ThemeData(
+        scaffoldBackgroundColor: ColorsManager.kBackgroundColor,
+        fontFamily: AppFonts.fontFamily,
+      ),
+      home: const HomePage(),
     );
   }
 
@@ -83,13 +73,5 @@ class QuranKareemApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-  }
-}
-
-extension MainCubitExtensions on MainCubit {
-  void initializeAppData() {
-    getSurahEN();
-    getQuran();
-    getVideo();
   }
 }

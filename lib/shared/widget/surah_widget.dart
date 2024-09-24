@@ -40,7 +40,7 @@ class SurahWidget extends StatelessWidget {
               children: [
                 SvgPicture.asset(Assets.imagesIconMuslim),
                 Text(
-                  surahModel.suwar![number].id!.toString(),
+                  surahModel.suwar?[number].id?.toString() ?? '',
                   style: const TextStyle(
                     color: ColorsManager.kWhiteColor,
                   ),
@@ -59,7 +59,7 @@ class SurahWidget extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          surahModel.suwar![number].name!,
+                          surahModel.suwar?[number].name ?? '',
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.start,
@@ -71,7 +71,7 @@ class SurahWidget extends StatelessWidget {
                       ),
                       const Spacer(),
                       Text(
-                        surahs.data!.surah![number].name ?? '',
+                        surahs.data?.surah?[number].name ?? '',
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           color: ColorsManager.kGreenColor,
@@ -83,7 +83,7 @@ class SurahWidget extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        surahModel.suwar![number].makkia!.toString() == '0'
+                        surahModel.suwar?[number].makkia?.toString() == '0'
                             ? 'Medinian'
                             : 'Meccan',
                         style: const TextStyle(
@@ -103,7 +103,7 @@ class SurahWidget extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '${mainCubit.ayatModel!.data!.surah![number].ayahs!.length.toString()} verses'
+                        '${mainCubit.ayatModel?.data?.surah?[number].ayahs?.length.toString() ?? ''} verses'
                             .toUpperCase(),
                         style: const TextStyle(
                           fontSize: 14,

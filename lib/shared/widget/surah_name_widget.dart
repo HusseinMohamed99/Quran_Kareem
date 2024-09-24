@@ -58,7 +58,7 @@ class SurahNameWidget extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        surahs.data!.surah![number].name ?? '',
+                        surahs.data?.surah?[number].name ?? '',
                         style: const TextStyle(
                           fontSize: 24,
                           color: ColorsManager.kWhiteColor,
@@ -66,7 +66,7 @@ class SurahNameWidget extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        surahs.data!.surah![number].englishNameTranslation ??
+                        surahs.data?.surah?[number].englishNameTranslation ??
                             '',
                         style: const TextStyle(
                           fontSize: 15,
@@ -80,7 +80,7 @@ class SurahNameWidget extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            surahs.data!.surah![number].revelationType
+                            surahs.data?.surah?[number].revelationType
                                     ?.toUpperCase() ??
                                 '',
                             style: const TextStyle(
@@ -101,7 +101,7 @@ class SurahNameWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '${mainCubit.ayatModel!.data!.surah![number].ayahs!.length.toString()} verses'
+                            '${mainCubit.ayatModel?.data?.surah?[number].ayahs?.length.toString() ?? ''} verses'
                                 .toUpperCase(),
                             style: const TextStyle(
                               fontSize: 15,

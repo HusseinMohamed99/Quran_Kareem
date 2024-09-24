@@ -12,68 +12,81 @@ class VideoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<MainCubit, MainState>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        MainCubit mainCubit = MainCubit.get(context);
-        return AnnotatedRegion<SystemUiOverlayStyle>(
-          value: const SystemUiOverlayStyle(
-            statusBarColor: Colors.transparent,
-          ),
-          child: Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(Assets.imagesBackground),
-                fit: BoxFit.fill,
-              ),
+    return BlocProvider(
+      create: (context) => MainCubit()..getVideo(),
+      child: BlocConsumer<MainCubit, MainState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          MainCubit mainCubit = MainCubit.get(context);
+          return AnnotatedRegion<SystemUiOverlayStyle>(
+            value: const SystemUiOverlayStyle(
+              statusBarColor: Colors.transparent,
             ),
-            child: Scaffold(
-              backgroundColor: Colors.transparent,
-              extendBody: true,
-              body: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      flex: 2,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(
-                            Assets.imagesHelal,
-                          ),
-                          SvgPicture.asset(
-                            Assets.imagesAlQuran,
-                          ),
-                        ],
+            child: Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(Assets.imagesBackground),
+                  fit: BoxFit.fill,
+                ),
+              ),
+              child: Scaffold(
+                backgroundColor: Colors.transparent,
+                extendBody: true,
+                body: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(
+                              Assets.imagesHelal,
+                            ),
+                            SvgPicture.asset(
+                              Assets.imagesAlQuran,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      child: ListView.separated(
-                        scrollDirection: Axis.vertical,
-                        itemBuilder: (context, index) {
-                          return VideosWidget(
-                            index: index,
-                            videoModel: mainCubit.videosModel!,
-                          );
-                        },
-                        itemCount: mainCubit.videosModel!.videos!.length,
-                        separatorBuilder: (BuildContext context, int index) {
-                          return const SizedBox(
-                            height: 40,
-                          );
-                        },
-                      ),
-                    ),
-                  ],
+                      if (state is GetVideosLoading)
+                        const Expanded(
+                          child: Center(
+                            child: CircularProgressIndicator.adaptive(
+                              backgroundColor: Colors.amber,
+                            ),
+                          ),
+                        )
+                      else
+                        Expanded(
+                          child: ListView.separated(
+                            scrollDirection: Axis.vertical,
+                            itemBuilder: (context, index) {
+                              return VideosWidget(
+                                index: index,
+                                videoModel: mainCubit.videosModel!,
+                              );
+                            },
+                            itemCount: mainCubit.videosModel!.videos!.length,
+                            separatorBuilder:
+                                (BuildContext context, int index) {
+                              return const SizedBox(
+                                height: 40,
+                              );
+                            },
+                          ),
+                        ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }
