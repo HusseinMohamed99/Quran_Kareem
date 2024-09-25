@@ -15,12 +15,14 @@ class TafasirScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
+
     return BlocProvider(
       create: (context) => MainCubit()..getTafasir(),
       child: BlocConsumer<MainCubit, MainState>(
         listener: (context, state) {},
         builder: (context, state) {
           MainCubit mainCubit = MainCubit.get(context);
+
           return AnnotatedRegion<SystemUiOverlayStyle>(
             value: const SystemUiOverlayStyle(
               statusBarColor: Colors.transparent,
@@ -72,7 +74,6 @@ class TafasirScreen extends StatelessWidget {
                           Expanded(
                             child: ListView.builder(
                               scrollDirection: Axis.horizontal,
-                              physics: const PageScrollPhysics(),
                               itemBuilder: (context, index) {
                                 return TafasirWidget(
                                   tafasirModel:

@@ -52,11 +52,14 @@ class _TafasirWidgetState extends State<TafasirWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               IconButton(
+                iconSize: 24,
                 onPressed: () {
                   audioPlayer.pause();
                 },
                 icon: SvgPicture.asset(
                   Assets.imagesIconMetro,
+                  width: 24,
+                  height: 24,
                   colorFilter: const ColorFilter.mode(
                     ColorsManager.kWhiteColor,
                     BlendMode.srcIn,
@@ -67,6 +70,7 @@ class _TafasirWidgetState extends State<TafasirWidget> {
                 width: 10,
               ),
               IconButton(
+                iconSize: 24,
                 onPressed: () {
                   setState(() {
                     audioPlayer.state == PlayerState.playing
@@ -82,6 +86,8 @@ class _TafasirWidgetState extends State<TafasirWidget> {
                   audioPlayer.state == PlayerState.playing
                       ? Assets.imagesPauseIcon
                       : Assets.imagesIconPlay,
+                  width: 24,
+                  height: 24,
                   colorFilter: const ColorFilter.mode(
                     ColorsManager.kWhiteColor,
                     BlendMode.srcIn,
