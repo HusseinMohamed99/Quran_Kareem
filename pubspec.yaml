@@ -1,5 +1,9 @@
 name: 'moshaf_app'
+<<<<<<< HEAD
 version: 1.0.0+7
+=======
+version: 1.0.0+5
+>>>>>>> a96be9896df937c72f300a0be4bc0339c8861c36
 publish_to: none
 environment: 
   sdk: '>=3.4.4 <4.0.0'
@@ -22,8 +26,8 @@ dependencies:
   url_launcher: '^6.1.14'
   video_player: '^2.7.2'
 dev_dependencies: 
-  custom_lint: '^0.5.1'
-  custom_lint_builder: '^0.5.1'
+  custom_lint: '^0.6.7'
+  custom_lint_builder: '^0.6.7'
   flutter_lints: '^4.0.0'
   flutter_test: 
     sdk: flutter
