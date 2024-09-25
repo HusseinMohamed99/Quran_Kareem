@@ -1,9 +1,5 @@
 name: 'moshaf_app'
-<<<<<<< HEAD
 version: 1.0.0+7
-=======
-version: 1.0.0+5
->>>>>>> a96be9896df937c72f300a0be4bc0339c8861c36
 publish_to: none
 environment: 
   sdk: '>=3.4.4 <4.0.0'
