@@ -1,10 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:moshaf_app/image_assets.dart';
-import 'package:moshaf_app/model/video_model.dart';
-import 'package:moshaf_app/shared/Colors/color_manager.dart';
-import 'package:share_plus/share_plus.dart';
-import 'package:video_player/video_player.dart';
+part of './../../core/helpers/export_manager/export_manager.dart';
 
 class VideosDetailsWidget extends StatefulWidget {
   const VideosDetailsWidget(
@@ -47,50 +41,16 @@ class _VideosDetailsWidgetState extends State<VideosDetailsWidget> {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        GestureDetector(
-          onTap: () {
-            setState(
-              () {
-                _controller.value.isPlaying
-                    ? _controller.pause()
-                    : _controller.play();
-              },
-            );
-          },
-          child: Center(
-            child: _controller.value.isInitialized
-                ? AspectRatio(
-                    aspectRatio: _controller.value.aspectRatio,
-                    child: VideoPlayer(_controller),
-                  )
-                : Image.network(
-                    widget.videosModel.videos![widget.number]
-                            .videosVideos![widget.index].videoThumbUrl ??
-                        '',
-                    fit: BoxFit.fitWidth,
-                    width: screenWidth,
-                    height: screenHeight * .5,
-                    errorBuilder: (BuildContext context, Object exception,
-                        StackTrace? stackTrace) {
-                      return const Text(
-                        'ooops Error with Image',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 10),
-                      );
-                    },
-                  ),
-          ),
-        ),
-        const SizedBox(height: 10),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+    return BlocConsumer<MainCubit, MainState>(
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      builder: (context, state) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            IconButton(
-              iconSize: 24,
-              onPressed: () {
+            GestureDetector(
+              onTap: () {
                 setState(
                   () {
                     _controller.value.isPlaying
@@ -99,35 +59,76 @@ class _VideosDetailsWidgetState extends State<VideosDetailsWidget> {
                   },
                 );
               },
-              icon: SvgPicture.asset(
-                _controller.value.isPlaying
-                    ? Assets.imagesPauseIcon
-                    : Assets.imagesIconPlay,
-                width: 24,
-                height: 24,
-                colorFilter: const ColorFilter.mode(
-                  ColorsManager.kWhiteColor,
-                  BlendMode.srcIn,
-                ),
+              child: Center(
+                child: _controller.value.isInitialized
+                    ? AspectRatio(
+                        aspectRatio: _controller.value.aspectRatio,
+                        child: VideoPlayer(_controller),
+                      )
+                    : Image.network(
+                        widget.videosModel.videos![widget.number]
+                                .videosVideos![widget.index].videoThumbUrl ??
+                            '',
+                        fit: BoxFit.fitWidth,
+                        width: screenWidth,
+                        height: screenHeight * .5,
+                        errorBuilder: (BuildContext context, Object exception,
+                            StackTrace? stackTrace) {
+                          return const Text(
+                            'ooops Error with Image',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: 10),
+                          );
+                        },
+                      ),
               ),
             ),
-            IconButton(
-              onPressed: () {
-                Share.share(
-                    "الفديو: ${widget.videosModel.videos![widget.number].videosVideos![widget.index].videoUrl ?? ''}\n تحميل البرنامج:  https://github.com/HusseinMohamed99/Moshaf_App/releases/download/v1.0.0/QURAN.KAREEM.V4.apk");
-              },
-              icon: SvgPicture.asset(
-                Assets.imagesShare,
-                height: 40,
-                colorFilter: const ColorFilter.mode(
-                  ColorsManager.kWhiteColor,
-                  BlendMode.srcIn,
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  iconSize: 24,
+                  onPressed: () {
+                    setState(
+                      () {
+                        _controller.value.isPlaying
+                            ? _controller.pause()
+                            : _controller.play();
+                      },
+                    );
+                  },
+                  icon: SvgPicture.asset(
+                    _controller.value.isPlaying
+                        ? Assets.imagesPauseIcon
+                        : Assets.imagesIconPlay,
+                    width: 24,
+                    height: 24,
+                    colorFilter: const ColorFilter.mode(
+                      ColorsManager.kWhiteColor,
+                      BlendMode.srcIn,
+                    ),
+                  ),
                 ),
-              ),
+                IconButton(
+                  onPressed: () {
+                    Share.share(
+                        "الفديو: ${widget.videosModel.videos![widget.number].videosVideos![widget.index].videoUrl ?? ''}\n تحميل البرنامج:  https://github.com/HusseinMohamed99/Moshaf_App/releases/download/v1.0.0/QURAN.KAREEM.V4.apk");
+                  },
+                  icon: SvgPicture.asset(
+                    Assets.imagesShare,
+                    height: 40,
+                    colorFilter: const ColorFilter.mode(
+                      ColorsManager.kWhiteColor,
+                      BlendMode.srcIn,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
-        ),
-      ],
+        );
+      },
     );
   }
 }

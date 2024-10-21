@@ -148,7 +148,13 @@ class ListOfGridWidget extends StatelessWidget {
               titleAR: 'فيديوهات',
               titleEN: 'Videos',
               function: () {
-                navigateTo(context, const VideoScreen());
+                navigateTo(
+                  context,
+                  BlocProvider(
+                    create: (context) => MainCubit()..getVideo(),
+                    child: const VideoScreen(),
+                  ),
+                );
               },
             ),
           ],
