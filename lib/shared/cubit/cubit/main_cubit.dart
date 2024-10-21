@@ -16,9 +16,9 @@ class MainCubit extends Cubit<MainState> {
   static MainCubit get(context) => BlocProvider.of(context);
 
   SurahModel? surahModel;
-  void getSurahEN() {
+  Future<void> getSurahEN() async {
     emit(GetSurahLoading());
-    DioHelper.getData(
+    await DioHelper.getData(
       url: '$surah?language=eng',
     ).then((value) {
       surahModel = SurahModel.fromJson(value.data);
@@ -83,13 +83,15 @@ class MainCubit extends Cubit<MainState> {
   Dio dio = Dio();
 
   AyatModel? ayatModel;
-  void getQuran() {
+  Future<void> getQuran() async {
     emit(GetQuranLoading());
-    dio.get('http://api.alquran.cloud/v1/quran/ar.alafasy').then((value) {
+    await dio
+        .get('http://api.alquran.cloud/v1/quran/ar.alafasy')
+        .then((value) async {
       ayatModel = AyatModel.fromJson(value.data);
       emit(GetQuranSuccess());
     }).catchError((error) {
-      emit(GetQuranError(error.toString()));
+      emit(GetQuranError(error));
     });
   }
 

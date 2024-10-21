@@ -1,16 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:moshaf_app/image_assets.dart';
-import 'package:moshaf_app/screens/MoshafScreen/moshaf_screen.dart';
-import 'package:moshaf_app/screens/RadioScreen/radio_screen.dart';
-import 'package:moshaf_app/screens/RecitersScreen/reciters_screen.dart';
-import 'package:moshaf_app/screens/RiwayatScreen/rewayat_screen.dart';
-import 'package:moshaf_app/screens/TafasirScreen/tafasir_screen.dart';
-import 'package:moshaf_app/screens/VideoScreen/video_screen.dart';
-import 'package:moshaf_app/shared/Colors/color_manager.dart';
-import 'package:moshaf_app/shared/components/navigator.dart';
-import 'package:moshaf_app/shared/components/responsive.space.dart';
+part of './../../core/helpers/export_manager/export_manager.dart';
 
 class GridWidget extends StatelessWidget {
   const GridWidget({
@@ -94,7 +82,15 @@ class ListOfGridWidget extends StatelessWidget {
               titleAR: 'سورة',
               titleEN: 'Surah',
               function: () {
-                navigateTo(context, const MoshafScreen());
+                navigateTo(
+                  context,
+                  BlocProvider(
+                    create: (context) => MainCubit()
+                      ..getSurahEN()
+                      ..getQuran(),
+                    child: const MoshafScreen(),
+                  ),
+                );
               },
             ),
             SizedBox(
