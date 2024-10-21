@@ -39,11 +39,6 @@ class OnBoardingScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      height: screenHeight <= 600
-                          ? screenHeight * 0.1
-                          : screenHeight * 0.2,
-                    ),
                     SvgPicture.asset(
                       Assets.imagesOnBoardingLogo,
                       allowDrawingOutsideViewBox: true,
@@ -102,30 +97,6 @@ class OnBoardingScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                    const Spacer(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(
-                        3,
-                        (index) {
-                          return Container(
-                            height: 7,
-                            width: 7,
-                            margin: const EdgeInsets.symmetric(horizontal: 4),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: index == 0
-                                  ? ColorsManager.kGreenColor
-                                  : index == 1
-                                      ? ColorsManager.kWhiteColor
-                                          .withOpacity(0.2)
-                                      : ColorsManager.kWhiteColor
-                                          .withOpacity(0.2),
-                            ),
-                          );
-                        },
                       ),
                     ),
                     SizedBox(height: screenHeight * 0.03),
