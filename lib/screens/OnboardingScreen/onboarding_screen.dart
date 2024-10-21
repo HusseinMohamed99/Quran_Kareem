@@ -1,11 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:moshaf_app/image_assets.dart';
-import 'package:moshaf_app/screens/HomeScreen/home_screen.dart';
-import 'package:moshaf_app/shared/Colors/color_manager.dart';
-import 'package:moshaf_app/shared/components/custom_outline.dart';
-import 'package:moshaf_app/shared/components/upgrade_wrapper.dart';
+part of './../../core/helpers/export_manager/export_manager.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});
