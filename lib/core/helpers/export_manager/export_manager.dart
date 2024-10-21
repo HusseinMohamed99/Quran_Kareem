@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,7 +7,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:moshaf_app/image_assets.dart';
 import 'package:moshaf_app/model/ayat_model.dart';
 import 'package:moshaf_app/model/surah_model.dart';
-import 'package:moshaf_app/screens/AyatScreen/ayat_screen.dart';
 import 'package:moshaf_app/screens/RadioScreen/radio_screen.dart';
 import 'package:moshaf_app/screens/RecitersScreen/reciters_screen.dart';
 import 'package:moshaf_app/screens/RiwayatScreen/rewayat_screen.dart';
@@ -22,10 +22,15 @@ import 'package:moshaf_app/shared/cubit/cubit/main_cubit.dart';
 import 'package:moshaf_app/shared/cubit/cubit/main_state.dart';
 import 'package:moshaf_app/shared/enum/enum.dart';
 import 'package:moshaf_app/shared/widget/al_basmala_widget.dart';
+import 'package:moshaf_app/shared/widget/surah_name_widget.dart';
+import 'package:share_plus/share_plus.dart';
 
+part './../../../screens/AyatScreen/ayat_screen.dart';
 part './../../../screens/Home/home_page.dart';
 part './../../../screens/HomeScreen/home_screen.dart';
 part './../../../screens/MoshafScreen/moshaf_screen.dart';
 part './../../../screens/OnboardingScreen/onboarding_screen.dart';
+part './../../../shared/widget/ayah_widget.dart';
+part './../../../shared/widget/ayat_list_view.dart';
 part './../../../shared/widget/grid_widget.dart';
 part './../../../shared/widget/surah_widget.dart';

@@ -1,10 +1,4 @@
-import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:moshaf_app/image_assets.dart';
-import 'package:moshaf_app/model/ayat_model.dart';
-import 'package:moshaf_app/shared/Colors/color_manager.dart';
-import 'package:share_plus/share_plus.dart';
+part of './../../core/helpers/export_manager/export_manager.dart';
 
 class AyahWidget extends StatefulWidget {
   const AyahWidget({
@@ -42,7 +36,7 @@ class _AyahWidgetState extends State<AyahWidget> {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
+          padding: EdgeInsets.symmetric(horizontal: 10.w),
           decoration: BoxDecoration(
             color: const Color.fromRGBO(17, 32, 149, 100),
             borderRadius: const BorderRadius.all(
@@ -56,22 +50,20 @@ class _AyahWidgetState extends State<AyahWidget> {
             children: [
               Container(
                 alignment: Alignment.center,
-                margin: const EdgeInsets.symmetric(
-                  horizontal: 5,
-                ),
-                width: 40,
-                height: 40,
+                margin: EdgeInsets.symmetric(horizontal: 5.w),
+                width: 30.w,
+                height: 30.h,
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: ColorsManager.kGreenColor,
                 ),
                 child: Text(
                   widget.surahs.data!.surah![widget.number].ayahs![widget.index]
-                      .number
+                      .numberInSurah
                       .toString(),
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: ColorsManager.kBlackColor,
-                    fontSize: 14,
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -85,15 +77,21 @@ class _AyahWidgetState extends State<AyahWidget> {
                 icon: SvgPicture.asset(Assets.imagesShare),
               ),
               IconButton(
-                iconSize: 24,
+                iconSize: 24.sp,
                 onPressed: () {
                   setState(
                     () {
-                      audioPlayer.play(
-                        UrlSource(widget.surahs.data!.surah![widget.number]
-                                .ayahs![widget.index].audio ??
-                            ''),
-                      );
+                      if (audioPlayer.state != PlayerState.playing) {
+                        audioPlayer.play(
+                          UrlSource(
+                            widget.surahs.data!.surah![widget.number]
+                                    .ayahs![widget.index].audio ??
+                                '',
+                          ),
+                        );
+                      } else {
+                        audioPlayer.stop();
+                      }
                     },
                   );
                 },
@@ -101,6 +99,8 @@ class _AyahWidgetState extends State<AyahWidget> {
                   audioPlayer.state == PlayerState.playing
                       ? Assets.imagesPauseIcon
                       : Assets.imagesPlay,
+                  width: 24.w,
+                  height: 24.h,
                   colorFilter: const ColorFilter.mode(
                     ColorsManager.kGreenColor,
                     BlendMode.srcIn,
@@ -108,22 +108,21 @@ class _AyahWidgetState extends State<AyahWidget> {
                 ),
               ),
               IconButton(
+                iconSize: 24.sp,
                 onPressed: () {},
                 icon: SvgPicture.asset(Assets.imagesSave),
               ),
             ],
           ),
         ),
-        const SizedBox(
-          height: 20,
-        ),
+        SizedBox(height: 20.h),
         Text(
           widget.surahs.data!.surah![widget.number].ayahs![widget.index].text ??
               '',
           textAlign: TextAlign.center,
-          style: const TextStyle(
+          style: TextStyle(
             color: ColorsManager.kWhiteColor,
-            fontSize: 20,
+            fontSize: 20.sp,
           ),
         ),
       ],

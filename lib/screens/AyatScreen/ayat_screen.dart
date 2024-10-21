@@ -1,12 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moshaf_app/image_assets.dart';
-import 'package:moshaf_app/model/ayat_model.dart';
-import 'package:moshaf_app/shared/cubit/cubit/main_cubit.dart';
-import 'package:moshaf_app/shared/cubit/cubit/main_state.dart';
-import 'package:moshaf_app/shared/widget/ayat_list_view.dart';
-import 'package:moshaf_app/shared/widget/surah_name_widget.dart';
+part of './../../core/helpers/export_manager/export_manager.dart';
 
 class AyatScreen extends StatelessWidget {
   const AyatScreen({super.key, required this.surahs, required this.number});
