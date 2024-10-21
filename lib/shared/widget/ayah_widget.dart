@@ -70,13 +70,6 @@ class _AyahWidgetState extends State<AyahWidget> {
               ),
               const Spacer(),
               IconButton(
-                onPressed: () {
-                  Share.share(
-                      "الآيه: ${widget.surahs.data!.surah![widget.number].ayahs![widget.index].text ?? ''}\n الصوت:  ${widget.surahs.data!.surah![widget.number].ayahs![widget.index].audio ?? ""} \n تحميل البرنامج:  https://github.com/HusseinMohamed99/Moshaf_App/releases/download/v1.0.0/QURAN.KAREEM.V4.apk");
-                },
-                icon: SvgPicture.asset(Assets.imagesShare),
-              ),
-              IconButton(
                 iconSize: 24.sp,
                 onPressed: () {
                   setState(
@@ -108,10 +101,18 @@ class _AyahWidgetState extends State<AyahWidget> {
                 ),
               ),
               IconButton(
-                iconSize: 24.sp,
-                onPressed: () {},
-                icon: SvgPicture.asset(Assets.imagesSave),
+                onPressed: () {
+                  Share.share(
+                      "الآيه: ${widget.surahs.data!.surah![widget.number].ayahs![widget.index].text ?? ''}\n الصوت:  ${widget.surahs.data!.surah![widget.number].ayahs![widget.index].audio ?? ""} \n تحميل البرنامج:  https://github.com/HusseinMohamed99/Moshaf_App/releases/download/v1.0.0/QURAN.KAREEM.V4.apk");
+                },
+                icon: SvgPicture.asset(Assets.imagesShare),
               ),
+
+              // IconButton(
+              //   iconSize: 24.sp,
+              //   onPressed: () {},
+              //   icon: SvgPicture.asset(Assets.imagesSave),
+              // ),
             ],
           ),
         ),
