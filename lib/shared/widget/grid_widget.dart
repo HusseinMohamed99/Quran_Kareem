@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:moshaf_app/image_assets.dart';
 import 'package:moshaf_app/screens/MoshafScreen/moshaf_screen.dart';
@@ -9,6 +10,7 @@ import 'package:moshaf_app/screens/TafasirScreen/tafasir_screen.dart';
 import 'package:moshaf_app/screens/VideoScreen/video_screen.dart';
 import 'package:moshaf_app/shared/Colors/color_manager.dart';
 import 'package:moshaf_app/shared/components/navigator.dart';
+import 'package:moshaf_app/shared/components/responsive.space.dart';
 
 class GridWidget extends StatelessWidget {
   const GridWidget({
@@ -31,12 +33,12 @@ class GridWidget extends StatelessWidget {
           children: [
             SvgPicture.asset(
               Assets.imagesLogo,
-              height: 135,
-              width: 135,
+              height: 100.h,
+              width: 100.w,
             ),
             Container(
-              width: 150,
-              height: 150,
+              width: context.screenWidth,
+              height: context.screenHeight * .18,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(11),
                 gradient: LinearGradient(
@@ -53,16 +55,16 @@ class GridWidget extends StatelessWidget {
                 children: [
                   Text(
                     titleAR,
-                    style: const TextStyle(
-                      fontSize: 23,
+                    style: TextStyle(
+                      fontSize: 20.sp,
                       color: ColorsManager.kWhiteColor,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(
                     titleEN,
-                    style: const TextStyle(
-                      fontSize: 23,
+                    style: TextStyle(
+                      fontSize: 20.sp,
                       color: ColorsManager.kWhiteColor,
                       fontWeight: FontWeight.bold,
                     ),
@@ -95,8 +97,8 @@ class ListOfGridWidget extends StatelessWidget {
                 navigateTo(context, const MoshafScreen());
               },
             ),
-            const SizedBox(
-              width: 30,
+            SizedBox(
+              width: 20.w,
             ),
             GridWidget(
               titleAR: 'راديو',
@@ -107,8 +109,8 @@ class ListOfGridWidget extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(
-          height: 42,
+        SizedBox(
+          height: 20.h,
         ),
         Row(
           children: [
@@ -119,8 +121,8 @@ class ListOfGridWidget extends StatelessWidget {
                 navigateTo(context, const RiwayatScreen());
               },
             ),
-            const SizedBox(
-              width: 30,
+            SizedBox(
+              width: 20.w,
             ),
             GridWidget(
               titleAR: 'تفسير',
@@ -131,8 +133,8 @@ class ListOfGridWidget extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(
-          height: 42,
+        SizedBox(
+          height: 20.h,
         ),
         Row(
           children: [
@@ -143,8 +145,8 @@ class ListOfGridWidget extends StatelessWidget {
                 navigateTo(context, const RecitersScreen());
               },
             ),
-            const SizedBox(
-              width: 30,
+            SizedBox(
+              width: 20.w,
             ),
             GridWidget(
               titleAR: 'فيديوهات',
@@ -155,8 +157,8 @@ class ListOfGridWidget extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(
-          height: 42,
+        SizedBox(
+          height: 20.h,
         ),
       ],
     );

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:moshaf_app/image_assets.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moshaf_app/shared/Colors/color_manager.dart';
+import 'package:moshaf_app/shared/components/responsive.space.dart';
 import 'package:moshaf_app/shared/cubit/cubit/main_cubit.dart';
 import 'package:moshaf_app/shared/cubit/cubit/main_state.dart';
 import 'package:moshaf_app/shared/widget/al_basmala_widget.dart';
@@ -14,8 +14,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
     return BlocProvider(
       create: (context) => MainCubit(),
       child: BlocConsumer<MainCubit, MainState>(
@@ -27,57 +25,26 @@ class HomeScreen extends StatelessWidget {
             ),
             child: Scaffold(
               backgroundColor: ColorsManager.kBackgroundColor,
-              extendBody: true,
-              appBar: AppBar(
-                automaticallyImplyLeading: false,
-                backgroundColor: Colors.transparent,
-                elevation: 0,
-                leadingWidth: 70,
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      padding: const EdgeInsets.only(left: 10),
-                      icon: SvgPicture.asset(Assets.imagesMenu),
-                      onPressed: () {},
-                    ),
-                    CircleAvatar(
-                      radius: 25,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(25),
-                        child: Image.network(
-                          'https://img.freepik.com/free-vector/hand-drawn-flat-design-salat-illustration_23-2149286670.jpg?w=740&t=st=1696751993~exp=1696752593~hmac=d7cbf26e44abb6dd97ae45177fabfe8b76b4b958eef8f6a440ed8e26c40058f1',
-                          errorBuilder: (BuildContext context, Object exception,
-                              StackTrace? stackTrace) {
-                            return const Text(
-                              'ooops Error with Image',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: 10),
-                            );
-                          },
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
               body: SizedBox(
-                width: screenWidth,
-                height: screenHeight,
+                width: context.screenWidth,
+                height: context.screenHeight,
                 child: SafeArea(
                   bottom: false,
-                  child: ListView(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    primary: true,
+                  child: Column(
                     children: [
                       AlBasmalaWidget(
-                        screenHeight: screenHeight,
-                        screenWidth: screenWidth,
+                        screenHeight: context.screenHeight,
+                        screenWidth: context.screenWidth,
                       ),
-                      const SizedBox(
-                        height: 20,
+                      Expanded(
+                        child: ListView(
+                          padding: EdgeInsets.symmetric(horizontal: 20.w),
+                          primary: false,
+                          children: const [
+                            ListOfGridWidget(),
+                          ],
+                        ),
                       ),
-                      const ListOfGridWidget(),
                     ],
                   ),
                 ),
