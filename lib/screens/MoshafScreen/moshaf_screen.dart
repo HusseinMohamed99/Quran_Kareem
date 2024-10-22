@@ -8,11 +8,10 @@ class MoshafScreen extends StatelessWidget {
     return BlocConsumer<MainCubit, MainState>(
       listener: (context, state) {},
       builder: (context, state) {
-        MainCubit mainCubit = MainCubit.get(context);
+        final mainCubit = MainCubit.get(context);
+
         return AnnotatedRegion<SystemUiOverlayStyle>(
-          value: const SystemUiOverlayStyle(
-            statusBarColor: Colors.transparent,
-          ),
+          value: const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
           child: Container(
             decoration: backgroundImage(),
             child: Scaffold(
@@ -23,53 +22,9 @@ class MoshafScreen extends StatelessWidget {
                 height: context.screenHeight,
                 child: Column(
                   children: [
-                    SizedBox(
-                      height: context.screenHeight * .02,
-                    ),
+                    SizedBox(height: context.screenHeight * .02),
                     const AlBasmalaBannerWidget(),
-                    if (state is GetQuranLoading || state is GetSurahLoading)
-                      const Expanded(
-                        child: Center(
-                          child: CircularProgressIndicator.adaptive(
-                            backgroundColor: Colors.amber,
-                          ),
-                        ),
-                      )
-                    else
-                      Expanded(
-                        child: ListView.separated(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 16.w,
-                          ),
-                          physics: const BouncingScrollPhysics(),
-                          // shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            return GestureDetector(
-                              onTap: () {
-                                navigateTo(
-                                  context,
-                                  AyatScreen(
-                                    surahs: mainCubit.ayatModel ?? AyatModel(),
-                                    number: index,
-                                  ),
-                                );
-                              },
-                              child: SurahWidget(
-                                surahModel:
-                                    mainCubit.surahModel ?? SurahModel(),
-                                number: index,
-                                surahs: mainCubit.ayatModel ?? AyatModel(),
-                              ),
-                            );
-                          },
-                          separatorBuilder: (context, index) {
-                            return const Divider(
-                              color: ColorsManager.kWhiteColor,
-                            );
-                          },
-                          itemCount: mainCubit.surahModel?.suwar?.length ?? 0,
-                        ),
-                      ),
+                    _buildBody(state, context, mainCubit),
                   ],
                 ),
               ),
@@ -78,5 +33,46 @@ class MoshafScreen extends StatelessWidget {
         );
       },
     );
+  }
+
+  Widget _buildBody(
+      MainState state, BuildContext context, MainCubit mainCubit) {
+    if (state is GetQuranLoading || state is GetSurahLoading) {
+      return const Expanded(
+        child: Center(
+          child: CircularProgressIndicator.adaptive(
+            backgroundColor: Colors.amber,
+          ),
+        ),
+      );
+    } else {
+      return Expanded(
+        child: ListView.separated(
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          physics: const BouncingScrollPhysics(),
+          itemBuilder: (context, index) {
+            return GestureDetector(
+              onTap: () {
+                navigateTo(
+                  context,
+                  AyatScreen(
+                    surahs: mainCubit.ayatModel ?? AyatModel(),
+                    number: index,
+                  ),
+                );
+              },
+              child: SurahWidget(
+                surahModel: mainCubit.surahModel ?? SurahModel(),
+                number: index,
+                surahs: mainCubit.ayatModel ?? AyatModel(),
+              ),
+            );
+          },
+          separatorBuilder: (context, index) =>
+              const Divider(color: ColorsManager.kWhiteColor),
+          itemCount: mainCubit.surahModel?.suwar?.length ?? 0,
+        ),
+      );
+    }
   }
 }
