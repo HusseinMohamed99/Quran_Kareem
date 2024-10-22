@@ -10,7 +10,7 @@ extension SnackBarExtension on BuildContext {
           style: buildTextStyle(
             context: this,
             fontSize: 15,
-            color: color ?? ColorsManager.kGreenColor,
+            color: color ?? Colors.green,
           ),
         ),
       ),

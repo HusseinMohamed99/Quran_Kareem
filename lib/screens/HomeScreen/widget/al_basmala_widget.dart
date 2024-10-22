@@ -8,7 +8,7 @@ class AlBasmalaBannerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: context.screenHeight * .39,
+      height: context.screenHeight * .37,
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
@@ -20,7 +20,7 @@ class AlBasmalaBannerWidget extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: context.screenHeight * .17,
+            top: context.screenHeight * .15,
             child: Stack(
               alignment: Alignment.bottomCenter,
               children: [
