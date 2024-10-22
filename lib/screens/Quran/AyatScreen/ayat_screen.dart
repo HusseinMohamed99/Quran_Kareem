@@ -1,4 +1,4 @@
-part of './../../core/helpers/export_manager/export_manager.dart';
+part of '../../../core/helpers/export_manager/export_manager.dart';
 
 class AyatScreen extends StatelessWidget {
   const AyatScreen({super.key, required this.surahs, required this.number});
