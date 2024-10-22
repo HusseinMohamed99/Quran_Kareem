@@ -1,15 +1,4 @@
-import 'package:dio/dio.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moshaf_app/model/ayat_model.dart';
-import 'package:moshaf_app/model/radio_model.dart';
-import 'package:moshaf_app/model/reciters_model.dart';
-import 'package:moshaf_app/model/riwayat_model.dart';
-import 'package:moshaf_app/model/surah_model.dart';
-import 'package:moshaf_app/model/tafasir_model.dart';
-import 'package:moshaf_app/model/video_model.dart';
-import 'package:moshaf_app/shared/Network/dio_helper.dart';
-import 'package:moshaf_app/shared/Network/end_points.dart';
-import 'package:moshaf_app/shared/cubit/cubit/main_state.dart';
+part of './../../../core/helpers/export_manager/export_manager.dart';
 
 class MainCubit extends Cubit<MainState> {
   MainCubit() : super(MainCubitInitial());
@@ -25,6 +14,18 @@ class MainCubit extends Cubit<MainState> {
       emit(GetSurahSuccess());
     }).catchError((error) {
       emit(GetSurahError(error.toString()));
+    });
+  }
+
+  AyatModel? ayatModel;
+  Future<void> getQuran() async {
+    emit(GetQuranLoading());
+    await DioHelper.getData(url: 'http://api.alquran.cloud/v1/quran/ar.alafasy')
+        .then((value) async {
+      ayatModel = AyatModel.fromJson(value.data);
+      emit(GetQuranSuccess());
+    }).catchError((error) {
+      emit(GetQuranError(error));
     });
   }
 
@@ -81,19 +82,6 @@ class MainCubit extends Cubit<MainState> {
   }
 
   Dio dio = Dio();
-
-  AyatModel? ayatModel;
-  Future<void> getQuran() async {
-    emit(GetQuranLoading());
-    await dio
-        .get('http://api.alquran.cloud/v1/quran/ar.alafasy')
-        .then((value) async {
-      ayatModel = AyatModel.fromJson(value.data);
-      emit(GetQuranSuccess());
-    }).catchError((error) {
-      emit(GetQuranError(error));
-    });
-  }
 
   RecitersModel? recitersModel;
   void getReciters() {

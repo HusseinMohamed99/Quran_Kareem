@@ -1,13 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:moshaf_app/image_assets.dart';
-import 'package:moshaf_app/model/riwayat_model.dart';
-import 'package:moshaf_app/shared/Colors/color_manager.dart';
-import 'package:moshaf_app/shared/cubit/cubit/main_cubit.dart';
-import 'package:moshaf_app/shared/cubit/cubit/main_state.dart';
-import 'package:moshaf_app/shared/widget/rewayet_widget.dart';
+part of './../../core/helpers/export_manager/export_manager.dart';
 
 class RiwayatScreen extends StatelessWidget {
   const RiwayatScreen({super.key});

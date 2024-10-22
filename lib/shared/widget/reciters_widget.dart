@@ -1,10 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:moshaf_app/image_assets.dart';
-import 'package:moshaf_app/model/reciters_model.dart';
-import 'package:moshaf_app/screens/RecitersScreen/reciters_details.dart';
-import 'package:moshaf_app/shared/Colors/color_manager.dart';
-import 'package:moshaf_app/shared/components/navigator.dart';
+part of './../../core/helpers/export_manager/export_manager.dart';
 
 class RecitersWidget extends StatelessWidget {
   const RecitersWidget({
