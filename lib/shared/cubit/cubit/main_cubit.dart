@@ -18,10 +18,10 @@ class MainCubit extends Cubit<MainState> {
   }
 
   AyatModel? ayatModel;
-  Future<void> getQuran() async {
+  void getQuran() {
     emit(GetQuranLoading());
-    await DioHelper.getData(url: 'http://api.alquran.cloud/v1/quran/ar.alafasy')
-        .then((value) async {
+    DioHelper.getData(url: 'http://api.alquran.cloud/v1/quran/ar.alafasy')
+        .then((value) {
       ayatModel = AyatModel.fromJson(value.data);
       emit(GetQuranSuccess());
     }).catchError((error) {

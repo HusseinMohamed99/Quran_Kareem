@@ -24,7 +24,7 @@ class MoshafScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: context.screenHeight * .03,
+                      height: context.screenHeight * .02,
                     ),
                     const AlBasmalaBannerWidget(),
                     if (state is GetQuranLoading || state is GetSurahLoading)
@@ -39,16 +39,27 @@ class MoshafScreen extends StatelessWidget {
                       Expanded(
                         child: ListView.separated(
                           padding: EdgeInsets.symmetric(
-                            vertical: 16.h,
                             horizontal: 16.w,
                           ),
                           physics: const BouncingScrollPhysics(),
                           // shrinkWrap: true,
                           itemBuilder: (context, index) {
-                            return SurahWidget(
-                              surahModel: mainCubit.surahModel ?? SurahModel(),
-                              number: index,
-                              surahs: mainCubit.ayatModel ?? AyatModel(),
+                            return GestureDetector(
+                              onTap: () {
+                                navigateTo(
+                                  context,
+                                  AyatScreen(
+                                    surahs: mainCubit.ayatModel ?? AyatModel(),
+                                    number: index,
+                                  ),
+                                );
+                              },
+                              child: SurahWidget(
+                                surahModel:
+                                    mainCubit.surahModel ?? SurahModel(),
+                                number: index,
+                                surahs: mainCubit.ayatModel ?? AyatModel(),
+                              ),
                             );
                           },
                           separatorBuilder: (context, index) {

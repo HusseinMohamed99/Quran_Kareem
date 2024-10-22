@@ -13,97 +13,80 @@ class SurahWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     MainCubit mainCubit = MainCubit.get(context);
-    return GestureDetector(
-      onTap: () {
-        navigateTo(
-          context,
-          AyatScreen(
-            surahs: surahs,
-            number: number,
-          ),
-        );
-      },
-      child: Row(
-        children: [
-          // Stack(
-          //   alignment: Alignment.center,
-          //   children: [
-          //     SvgPicture.asset(Assets.imagesIconMuslim),
-          //     Text(
-          //       surahModel.suwar?[number].id?.toString() ?? '',
-          //       style: const TextStyle(
-          //         color: ColorsManager.kWhiteColor,
-          //       ),
-          //     ),
-          //   ],
-          // ),
-          // SizedBox(
-          //   width: 20.w,
-          // ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      surahModel.suwar?[number].name ?? '',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                        color: ColorsManager.kGreenColor,
-                        fontSize: 20.sp,
-                      ),
-                    ),
-                    Text(
-                      surahs.data?.surah?[number].name ?? '',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: ColorsManager.kGreenColor,
-                        fontSize: 20.sp,
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text(
-                      surahModel.suwar?[number].makkia?.toString() == '0'
-                          ? 'Medinian'
-                          : 'Meccan',
-                      style: const TextStyle(
-                        color: ColorsManager.kWhiteColor,
-                        fontSize: 14,
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: 5,
-                      ),
-                      width: 5,
-                      height: 5,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: ColorsManager.kGreyColor,
-                      ),
-                    ),
-                    Text(
-                      '${mainCubit.ayatModel?.data?.surah?[number].ayahs?.length.toString() ?? ''} verses'
-                          .toUpperCase(),
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: ColorsManager.kWhiteColor,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+    return Row(
+      children: [
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            SvgPicture.asset(Assets.imagesIconMuslim),
+            Text(
+              surahModel.suwar?[number].id?.toString() ?? '',
+              style: buildTextStyle(context: context, fontSize: 12),
             ),
+          ],
+        ),
+        SizedBox(
+          width: 20.w,
+        ),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    surahModel.suwar?[number].name ?? '',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.start,
+                    style: buildTextStyle(
+                      context: context,
+                      fontSize: 16,
+                      color: ColorsManager.kGreenColor,
+                    ),
+                  ),
+                  Text(
+                    surahs.data?.surah?[number].name ?? '',
+                    textAlign: TextAlign.center,
+                    style: buildTextStyle(
+                      context: context,
+                      fontSize: 16,
+                      color: ColorsManager.kGreenColor,
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Text(
+                    surahModel.suwar?[number].makkia?.toString() == '0'
+                        ? 'Medinian'
+                        : 'Meccan',
+                    style: buildTextStyle(context: context, fontSize: 11),
+                  ),
+                  Container(
+                    margin: EdgeInsets.symmetric(
+                      horizontal: 5.w,
+                    ),
+                    width: 5.w,
+                    height: 5.h,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: ColorsManager.kGreyColor,
+                    ),
+                  ),
+                  Text(
+                    '${mainCubit.ayatModel?.data?.surah?[number].ayahs?.length.toString() ?? ''} Verses',
+                    style: buildTextStyle(context: context, fontSize: 11),
+                  ),
+                ],
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

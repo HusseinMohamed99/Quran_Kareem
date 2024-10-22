@@ -19,8 +19,8 @@ class GridItemList extends StatelessWidget {
                     _navigateWithCubit(
                       context,
                       MainCubit()
-                        ..getSurahEN()
-                        ..getQuran(),
+                        ..getQuran()
+                        ..getSurahEN(),
                       const MoshafScreen(),
                     );
                   }),
