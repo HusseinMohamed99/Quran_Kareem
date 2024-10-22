@@ -4,13 +4,13 @@ extension SnackBarExtension on BuildContext {
   void showSnackBar(String message, {Color? color}) {
     ScaffoldMessenger.of(this).showSnackBar(
       SnackBar(
-        backgroundColor: ColorsManager.kBackgroundColor,
+        backgroundColor: ColorsManager.kGreyColor,
         content: Text(
           message,
           style: buildTextStyle(
             context: this,
             fontSize: 15,
-            color: color ?? Colors.green,
+            color: color ?? ColorsManager.kGreenColor,
           ),
         ),
       ),
