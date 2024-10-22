@@ -1,4 +1,4 @@
-part of './../../core/helpers/export_manager/export_manager.dart';
+part of '../../../core/helpers/export_manager/export_manager.dart';
 
 class AyatListView extends StatelessWidget {
   const AyatListView({
@@ -24,7 +24,7 @@ class AyatListView extends StatelessWidget {
       itemCount: mainCubit.ayatModel?.data?.surah?[number].ayahs?.length ?? 0,
       separatorBuilder: (BuildContext context, int index) {
         return SizedBox(
-          height: 20.h,
+          height: 10.h,
         );
       },
     );

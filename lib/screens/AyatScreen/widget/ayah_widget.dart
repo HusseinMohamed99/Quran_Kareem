@@ -1,4 +1,4 @@
-part of './../../core/helpers/export_manager/export_manager.dart';
+part of '../../../core/helpers/export_manager/export_manager.dart';
 
 class AyahWidget extends StatefulWidget {
   const AyahWidget({
@@ -55,16 +55,22 @@ class _AyahWidgetState extends State<AyahWidget> {
                 height: 30.h,
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
-                  color: ColorsManager.kGreenColor,
+                  gradient: LinearGradient(
+                    colors: [
+                      ColorsManager.kWhiteColor,
+                      ColorsManager.kGreenColor,
+                      ColorsManager.kBlueColor,
+                    ],
+                  ),
                 ),
                 child: Text(
                   widget.surahs.data!.surah![widget.number].ayahs![widget.index]
                       .numberInSurah
                       .toString(),
-                  style: TextStyle(
+                  style: buildTextStyle(
+                    context: context,
+                    fontSize: 14,
                     color: ColorsManager.kBlackColor,
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
@@ -101,30 +107,26 @@ class _AyahWidgetState extends State<AyahWidget> {
                 ),
               ),
               IconButton(
+                iconSize: 24.sp,
                 onPressed: () {
                   Share.share(
-                      "الآيه: ${widget.surahs.data!.surah![widget.number].ayahs![widget.index].text ?? ''}\n الصوت:  ${widget.surahs.data!.surah![widget.number].ayahs![widget.index].audio ?? ""} \n تحميل البرنامج:  https://github.com/HusseinMohamed99/Moshaf_App/releases/download/v1.0.0/QURAN.KAREEM.V4.apk");
+                      "الآيه: ${widget.surahs.data!.surah![widget.number].ayahs![widget.index].text ?? ''}\n الصوت:  ${widget.surahs.data!.surah![widget.number].ayahs![widget.index].audio ?? ""}");
                 },
-                icon: SvgPicture.asset(Assets.imagesShare),
+                icon: SvgPicture.asset(
+                  Assets.imagesShare,
+                  width: 24.w,
+                  height: 24.h,
+                ),
               ),
-
-              // IconButton(
-              //   iconSize: 24.sp,
-              //   onPressed: () {},
-              //   icon: SvgPicture.asset(Assets.imagesSave),
-              // ),
             ],
           ),
         ),
-        SizedBox(height: 20.h),
+        SizedBox(height: 10.h),
         Text(
           widget.surahs.data!.surah![widget.number].ayahs![widget.index].text ??
               '',
           textAlign: TextAlign.center,
-          style: TextStyle(
-            color: ColorsManager.kWhiteColor,
-            fontSize: 20.sp,
-          ),
+          style: buildTextStyle(context: context, fontSize: 20),
         ),
       ],
     );
