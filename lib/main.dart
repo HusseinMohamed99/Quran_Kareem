@@ -92,7 +92,7 @@ class QuranKareemApp extends StatelessWidget {
               scaffoldBackgroundColor: ColorsManager.kBackgroundColor,
               fontFamily: AppFonts.fontFamily,
             ),
-            home: const HomePage(),
+            home: const LayoutPage(),
           ),
         );
       },
