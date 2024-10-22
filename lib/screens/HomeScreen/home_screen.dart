@@ -19,22 +19,13 @@ class HomeScreen extends StatelessWidget {
               body: SizedBox(
                 width: context.screenWidth,
                 height: context.screenHeight,
-                child: SafeArea(
+                child: const SafeArea(
                   bottom: false,
                   child: Column(
                     children: [
-                      AlBasmalaWidget(
-                        screenHeight: context.screenHeight,
-                        screenWidth: context.screenWidth,
-                      ),
+                      AlBasmalaBannerWidget(),
                       Expanded(
-                        child: ListView(
-                          padding: EdgeInsets.symmetric(horizontal: 20.w),
-                          primary: false,
-                          children: const [
-                            ListOfGridWidget(),
-                          ],
-                        ),
+                        child: GridItemList(),
                       ),
                     ],
                   ),

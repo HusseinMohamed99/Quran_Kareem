@@ -1,40 +1,32 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:moshaf_app/image_assets.dart';
-import 'package:moshaf_app/shared/Colors/color_manager.dart';
+part of '../../../core/helpers/export_manager/export_manager.dart';
 
-class AlBasmalaWidget extends StatelessWidget {
-  const AlBasmalaWidget({
+class AlBasmalaBannerWidget extends StatelessWidget {
+  const AlBasmalaBannerWidget({
     super.key,
-    required this.screenHeight,
-    required this.screenWidth,
   });
-
-  final double screenHeight;
-  final double screenWidth;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: screenHeight * .4,
+      height: context.screenHeight * .39,
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
           Positioned(
-            top: screenHeight * -.04,
+            top: context.screenHeight * -.04,
             child: SvgPicture.asset(
               Assets.imagesLogo,
-              width: screenWidth * .8,
+              width: context.screenWidth * .8,
             ),
           ),
           Positioned(
-            top: screenHeight * .17,
+            top: context.screenHeight * .17,
             child: Stack(
               alignment: Alignment.bottomCenter,
               children: [
                 Container(
-                  width: screenWidth * .9,
-                  height: screenHeight * .2,
+                  width: context.screenWidth * .9,
+                  height: context.screenHeight * .2,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(11),
                     gradient: const LinearGradient(
@@ -47,11 +39,11 @@ class AlBasmalaWidget extends StatelessWidget {
                 ),
                 SvgPicture.asset(Assets.imagesVectorOptimized),
                 Positioned(
-                  top: screenHeight * .08,
+                  top: context.screenHeight * .08,
                   child: SvgPicture.asset(
                     Assets.imagesAlBasmala,
                     fit: BoxFit.fitHeight,
-                    width: screenWidth * .6,
+                    width: context.screenWidth * .6,
                   ),
                 ),
               ],
