@@ -119,7 +119,6 @@ Future<void> requestReview() async {
 
 goToApplicationOnPlayStore() async {
   PackageInfo packageInfo = await PackageInfo.fromPlatform();
-
   String url = '';
   String packageName = packageInfo.packageName;
   if (Platform.isAndroid) {

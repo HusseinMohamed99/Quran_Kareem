@@ -38,3 +38,9 @@ part './../../../shared/widget/ayat_list_view.dart';
 part './../../../shared/widget/grid_widget.dart';
 part './../../../shared/widget/surah_widget.dart';
 part './../../../shared/widget/video_details_widget.dart';
+
+part './../../../shared/components/responsive_font_size.dart';
+part './../../../shared/components/text_style.dart';
+part './../../../screens/OnboardingScreen/widget/custom_on_boarding_button.dart';
+part './../../../screens/OnboardingScreen/widget/on_boarding_image.dart';
+part './../../../shared/components/background_image.dart';
