@@ -63,3 +63,4 @@ part './../../../shared/widget/surah_widget.dart';
 part './../../../shared/widget/video_details_widget.dart';
 
 part './../../../screens/RadioScreen/widget/custom_radio_icon_button.dart';
+part './../../../screens/Quran/MoshafScreen/widget/quran_list_view.dart';

@@ -35,13 +35,7 @@ class AyatScreen extends StatelessWidget {
                         mainCubit: mainCubit,
                       ),
                       if (state is GetQuranLoading)
-                        const Expanded(
-                          child: Center(
-                            child: CircularProgressIndicator.adaptive(
-                              backgroundColor: Colors.amber,
-                            ),
-                          ),
-                        )
+                        const AdaptiveIndicator()
                       else
                         Expanded(
                           child: AyatListView(
