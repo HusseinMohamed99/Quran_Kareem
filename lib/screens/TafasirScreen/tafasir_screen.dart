@@ -5,88 +5,48 @@ class TafasirScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
+    return BlocConsumer<MainCubit, MainState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        MainCubit mainCubit = MainCubit.get(context);
 
-    return BlocProvider(
-      create: (context) => MainCubit()..getTafasir(),
-      child: BlocConsumer<MainCubit, MainState>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          MainCubit mainCubit = MainCubit.get(context);
-
-          return AnnotatedRegion<SystemUiOverlayStyle>(
-            value: const SystemUiOverlayStyle(
-              statusBarColor: Colors.transparent,
-            ),
-            child: Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(
-                    Assets.imagesBackground,
-                  ),
-                  fit: BoxFit.fill,
-                ),
-              ),
-              child: Scaffold(
-                backgroundColor: Colors.transparent,
-                extendBody: true,
-                body: SizedBox(
-                  height: screenHeight,
-                  width: screenWidth,
-                  child: Center(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SvgPicture.asset(
-                                Assets.imagesHelal,
-                              ),
-                              SvgPicture.asset(
-                                Assets.imagesAlQuran,
-                              ),
-                            ],
-                          ),
-                        ),
-                        if (state is GetTafasirLoading)
-                          const Expanded(
-                            child: Center(
-                              child: CircularProgressIndicator.adaptive(
-                                backgroundColor: Colors.amber,
-                              ),
-                            ),
-                          )
-                        else
-                          Expanded(
-                            child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (context, index) {
-                                return TafasirWidget(
-                                  tafasirModel:
-                                      mainCubit.tafasirModel ?? TafasirModel(),
-                                  index: index,
-                                );
-                              },
-                              itemCount: mainCubit
-                                      .tafasirModel?.tafasir?.soar?.length ??
-                                  0,
-                            ),
-                          )
-                      ],
+        return AnnotatedRegion<SystemUiOverlayStyle>(
+          value: const SystemUiOverlayStyle(
+            statusBarColor: Colors.transparent,
+          ),
+          child: Container(
+            decoration: backgroundImage(),
+            child: Scaffold(
+              backgroundColor: Colors.transparent,
+              body: SizedBox(
+                height: context.screenHeight,
+                width: context.screenWidth,
+                child: Column(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: SvgPicture.asset(
+                        Assets.imagesAlQuran,
+                        width: 100.w,
+                        height: 100.h,
+                      ),
                     ),
-                  ),
+                    if (state is GetTafasirLoading)
+                      const AdaptiveIndicator()
+                    else
+                      Expanded(
+                        child: TafasirWidget(
+                          tafasirModel: mainCubit.currentTafasir!,
+                          mainCubit: mainCubit,
+                        ),
+                      ),
+                  ],
                 ),
               ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

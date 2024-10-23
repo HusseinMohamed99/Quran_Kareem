@@ -42,33 +42,59 @@ class MainCubit extends Cubit<MainState> {
     });
   }
 
-  TafasirModel? tafasirModel;
+  previousTafasir() {
+    if (currentIndexTafasir == 0) return;
+    player.stop();
+    isTafasirPlay = false;
+    currentIndexTafasir--;
+    currentTafasir = soar![currentIndexTafasir];
+    emit(GetTafasirSuccess());
+  }
+
+  nextTafasir() {
+    if (currentIndexTafasir == soar!.length - 1) return;
+    player.stop();
+    isTafasirPlay = false;
+    currentIndexTafasir++;
+    currentTafasir = soar![currentIndexTafasir];
+    emit(GetTafasirSuccess());
+  }
+
+  clickOnTafasirPlay() {
+    if (player.state == PlayerState.playing) {
+      isTafasirPlay = false;
+      player.pause();
+    } else if (player.state == PlayerState.paused) {
+      isTafasirPlay = true;
+      player.resume();
+    } else {
+      isTafasirPlay = true;
+      player.play(UrlSource(currentTafasir!.url!));
+    }
+    emit(GetTafasirSuccess());
+  }
+
+  List<Soar>? soar = [];
+  Soar? currentTafasir;
+  int currentIndexTafasir = 0;
+  bool isTafasirPlay = false;
+  // TafasirModel? tafasirModel;
   void getTafasir() {
     emit(GetTafasirLoading());
     DioHelper.getData(
       url: tafasir,
     ).then((value) {
-      tafasirModel = TafasirModel.fromJson(value.data);
+      var data = TafasirModel.fromJson(value.data);
+      soar = data.tafasir?.soar;
+      if (soar != null && soar!.isNotEmpty) {
+        currentTafasir = soar![currentIndexTafasir];
+      }
       emit(GetTafasirSuccess());
     }).catchError((error) {
       emit(GetTafasirError(error.toString()));
     });
   }
 
-  VideosModel? videosModel;
-  void getVideo() async {
-    emit(GetVideosLoading());
-    await DioHelper.getData(
-      url: videos,
-    ).then((value) {
-      videosModel = VideosModel.fromJson(value.data);
-      emit(GetVideosSuccess());
-    }).catchError((error) {
-      emit(GetVideosError(error.toString()));
-    });
-  }
-
-  // RadioModel? radioModel;
   List<Radios>? radios = [];
   Radios? currentRadio;
   int currentIndex = 0;
@@ -86,6 +112,19 @@ class MainCubit extends Cubit<MainState> {
       emit(GetRadioSuccess());
     }).catchError((error) {
       emit(GetRadioError(error.toString()));
+    });
+  }
+
+  VideosModel? videosModel;
+  void getVideo() async {
+    emit(GetVideosLoading());
+    await DioHelper.getData(
+      url: videos,
+    ).then((value) {
+      videosModel = VideosModel.fromJson(value.data);
+      emit(GetVideosSuccess());
+    }).catchError((error) {
+      emit(GetVideosError(error.toString()));
     });
   }
 

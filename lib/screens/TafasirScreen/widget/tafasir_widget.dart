@@ -1,25 +1,30 @@
 part of './../../../core/helpers/export_manager/export_manager.dart';
 
-class RadioListViewWidget extends StatefulWidget {
-  const RadioListViewWidget(
-      {super.key, required this.radioModel, required this.mainCubit});
-  final Radios radioModel;
+class TafasirWidget extends StatefulWidget {
+  const TafasirWidget({
+    super.key,
+    required this.tafasirModel,
+    required this.mainCubit,
+  });
+  final Soar tafasirModel;
   final MainCubit mainCubit;
+
   @override
-  State<RadioListViewWidget> createState() => _RadioListViewWidgetState();
+  State<TafasirWidget> createState() => _TafasirWidgetState();
 }
 
-class _RadioListViewWidgetState extends State<RadioListViewWidget> {
+class _TafasirWidgetState extends State<TafasirWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: context.screenWidth,
+      width: context.screenHeight,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            widget.radioModel.name ?? '',
-            style: buildTextStyle(context: context, fontSize: 16),
+            widget.tafasirModel.name ?? '',
+            style:
+                const TextStyle(color: ColorsManager.kWhiteColor, fontSize: 20),
           ),
           SizedBox(
             height: 50.h,
@@ -28,22 +33,22 @@ class _RadioListViewWidgetState extends State<RadioListViewWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               CustomPlayerIconButton(
-                voidCallback: () {
-                  widget.mainCubit.previousRadio();
-                },
                 imageIcon: Assets.imagesIconMetro,
+                voidCallback: () {
+                  widget.mainCubit.previousTafasir();
+                },
               ),
               CustomPlayerIconButton(
-                voidCallback: () {
-                  widget.mainCubit.clickOnPlay();
-                },
                 imageIcon: Assets.imagesIconPlay,
+                voidCallback: () {
+                  widget.mainCubit.clickOnTafasirPlay();
+                },
               ),
               CustomPlayerIconButton(
-                voidCallback: () {
-                  widget.mainCubit.nextRadio();
-                },
                 imageIcon: Assets.imagesIconMetroNext,
+                voidCallback: () {
+                  widget.mainCubit.nextTafasir();
+                },
               ),
             ],
           )

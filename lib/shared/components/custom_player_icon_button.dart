@@ -1,7 +1,7 @@
-part of './../../../core/helpers/export_manager/export_manager.dart';
+part of '../../core/helpers/export_manager/export_manager.dart';
 
-class CustomRadioIconButton extends StatelessWidget {
-  const CustomRadioIconButton({
+class CustomPlayerIconButton extends StatelessWidget {
+  const CustomPlayerIconButton({
     super.key,
     required this.voidCallback,
     required this.imageIcon,
