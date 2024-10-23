@@ -13,13 +13,9 @@ class LayoutPage extends StatelessWidget {
         body: Center(
           child: BlocConsumer<InternetCubit, InternetState>(
             listener: (context, state) {
-              if (state == InternetState.gained) {
+              if (state == InternetState.lost) {
                 context.showSnackBar(
-                  'Connected',
-                );
-              } else if (state == InternetState.lost) {
-                context.showSnackBar(
-                  'Not Connected',
+                  'Check Internet Connection',
                   color: Colors.red,
                 );
               }
