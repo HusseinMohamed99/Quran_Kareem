@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:moshaf_app/image_assets.dart';
-import 'package:moshaf_app/model/reciters_model.dart';
-import 'package:moshaf_app/shared/Colors/color_manager.dart';
+part of './../../../core/helpers/export_manager/export_manager.dart';
 
 class RecitersDetailsWidget extends StatelessWidget {
   const RecitersDetailsWidget({
@@ -18,8 +14,8 @@ class RecitersDetailsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-      margin: const EdgeInsets.symmetric(horizontal: 20),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
+      margin: EdgeInsets.symmetric(horizontal: 20.w),
       decoration: BoxDecoration(
         color: const Color.fromRGBO(17, 32, 149, 100),
         borderRadius: const BorderRadius.all(
@@ -34,12 +30,14 @@ class RecitersDetailsWidget extends StatelessWidget {
           Stack(
             alignment: Alignment.center,
             children: [
-              SvgPicture.asset(Assets.imagesIconMuslim),
+              SvgPicture.asset(
+                Assets.imagesIconMuslim,
+                width: 24.w,
+                height: 24.h,
+              ),
               Text(
                 recitersModel.reciters![number].moshaf![index].id.toString(),
-                style: const TextStyle(
-                  color: ColorsManager.kWhiteColor,
-                ),
+                style: buildTextStyle(context: context, fontSize: 12),
               ),
             ],
           ),
@@ -47,10 +45,7 @@ class RecitersDetailsWidget extends StatelessWidget {
             child: Text(
               recitersModel.reciters![number].moshaf![index].name!,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: ColorsManager.kWhiteColor,
-                fontSize: 20,
-              ),
+              style: buildTextStyle(context: context, fontSize: 16),
             ),
           ),
         ],

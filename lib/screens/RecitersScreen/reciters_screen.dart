@@ -16,35 +16,25 @@ class RecitersScreen extends StatelessWidget {
               statusBarColor: Colors.transparent,
             ),
             child: Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(Assets.imagesBackground),
-                  fit: BoxFit.fill,
-                ),
-              ),
+              decoration: backgroundImage(),
               child: Scaffold(
                 backgroundColor: Colors.transparent,
                 extendBody: true,
                 body: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Expanded(
                       flex: 1,
                       child: SvgPicture.asset(
                         Assets.imagesHelal,
+                        width: context.screenWidth * .2,
+                        height: context.screenHeight * .2,
                       ),
                     ),
                     if (state is GetRecitersLoading)
-                      const Expanded(
-                        child: Center(
-                          child: CircularProgressIndicator.adaptive(
-                            backgroundColor: Colors.amber,
-                          ),
-                        ),
-                      )
+                      const AdaptiveIndicator()
                     else
                       Expanded(
+                        flex: 3,
                         child: ListView.separated(
                           scrollDirection: Axis.vertical,
                           itemBuilder: (context, index) {
@@ -52,13 +42,14 @@ class RecitersScreen extends StatelessWidget {
                               recitersModel:
                                   mainCubit.recitersModel ?? RecitersModel(),
                               index: index,
+                              mainCubit: mainCubit,
                             );
                           },
                           itemCount:
                               mainCubit.recitersModel?.reciters?.length ?? 0,
                           separatorBuilder: (BuildContext context, int index) {
-                            return const SizedBox(
-                              height: 60,
+                            return SizedBox(
+                              height: 20.h,
                             );
                           },
                         ),

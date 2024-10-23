@@ -1,13 +1,15 @@
-part of './../../core/helpers/export_manager/export_manager.dart';
+part of '../../../core/helpers/export_manager/export_manager.dart';
 
 class RecitersWidget extends StatelessWidget {
   const RecitersWidget({
     super.key,
     required this.recitersModel,
     required this.index,
+    required this.mainCubit,
   });
   final RecitersModel recitersModel;
   final int index;
+  final MainCubit mainCubit;
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +20,7 @@ class RecitersWidget extends StatelessWidget {
           RecitersDetailsScreen(
             number: index,
             recitersModel: recitersModel,
+            mainCubit: mainCubit,
           ),
         );
       },
@@ -33,18 +36,21 @@ class RecitersWidget extends StatelessWidget {
           ),
         ),
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
           child: Row(
             children: [
               Stack(
                 alignment: Alignment.center,
                 children: [
-                  SvgPicture.asset(Assets.imagesIconMuslim),
+                  SvgPicture.asset(
+                    Assets.imagesIconMuslim,
+                    width: 24.w,
+                    height: 24.h,
+                  ),
                   Text(
                     recitersModel.reciters![index].letter ?? '',
-                    style: const TextStyle(
-                      color: ColorsManager.kWhiteColor,
-                    ),
+                    textAlign: TextAlign.center,
+                    style: buildTextStyle(context: context, fontSize: 12),
                   ),
                 ],
               ),
@@ -52,10 +58,7 @@ class RecitersWidget extends StatelessWidget {
                 child: Text(
                   recitersModel.reciters![index].name ?? '',
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: ColorsManager.kWhiteColor,
-                    fontSize: 20,
-                  ),
+                  style: buildTextStyle(context: context, fontSize: 16),
                 ),
               ),
             ],
