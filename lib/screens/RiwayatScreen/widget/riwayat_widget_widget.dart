@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:moshaf_app/image_assets.dart';
-import 'package:moshaf_app/model/riwayat_model.dart';
-import 'package:moshaf_app/shared/Colors/color_manager.dart';
+part of './../../../core/helpers/export_manager/export_manager.dart';
 
 class RiwayatWidget extends StatelessWidget {
   const RiwayatWidget(
@@ -11,8 +7,8 @@ class RiwayatWidget extends StatelessWidget {
   final int index;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 6.h),
       child: Row(
         children: [
           Stack(
@@ -21,9 +17,7 @@ class RiwayatWidget extends StatelessWidget {
               SvgPicture.asset(Assets.imagesIconMuslim),
               Text(
                 riwayatModel.riwayat![index].id.toString(),
-                style: const TextStyle(
-                  color: ColorsManager.kWhiteColor,
-                ),
+                style: buildTextStyle(context: context, fontSize: 12),
               ),
             ],
           ),
@@ -31,10 +25,7 @@ class RiwayatWidget extends StatelessWidget {
             child: Text(
               riwayatModel.riwayat![index].name!,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: ColorsManager.kWhiteColor,
-                fontSize: 20,
-              ),
+              style: buildTextStyle(context: context, fontSize: 16),
             ),
           ),
         ],

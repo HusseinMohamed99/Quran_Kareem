@@ -5,9 +5,6 @@ class RiwayatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
-
     return BlocProvider(
       create: (context) => MainCubit()..getRiwayat(),
       child: BlocConsumer<MainCubit, MainState>(
@@ -19,44 +16,27 @@ class RiwayatScreen extends StatelessWidget {
               statusBarColor: Colors.transparent,
             ),
             child: Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(
-                    Assets.imagesBackground,
-                  ),
-                  fit: BoxFit.fill,
-                ),
-              ),
+              decoration: backgroundImage(),
               child: Scaffold(
                 backgroundColor: Colors.transparent,
                 extendBody: true,
                 body: SizedBox(
-                  height: screenHeight,
-                  width: screenWidth,
+                  height: context.screenHeight,
+                  width: context.screenWidth,
                   child: Center(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Expanded(
-                          flex: 1,
-                          child: SvgPicture.asset(
-                            Assets.imagesGroup,
-                          ),
+                        SvgPicture.asset(
+                          Assets.imagesGroup,
+                          width: 200.w,
+                          height: 200.h,
                         ),
                         if (state is GetRiwayatLoading)
-                          const Expanded(
-                            child: Center(
-                              child: CircularProgressIndicator.adaptive(
-                                backgroundColor: Colors.amber,
-                              ),
-                            ),
-                          )
+                          const AdaptiveIndicator()
                         else
                           Expanded(
-                            flex: 2,
+                            flex: 1,
                             child: ListView.separated(
-                              padding: const EdgeInsets.symmetric(vertical: 16),
                               physics: const BouncingScrollPhysics(),
                               shrinkWrap: true,
                               itemBuilder: (context, index) {
@@ -67,9 +47,10 @@ class RiwayatScreen extends StatelessWidget {
                                 );
                               },
                               separatorBuilder: (context, index) {
-                                return const Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 25),
-                                  child: Divider(
+                                return Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 16.w),
+                                  child: const Divider(
                                     color: ColorsManager.kWhiteColor,
                                   ),
                                 );
