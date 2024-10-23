@@ -10,19 +10,11 @@ class VideoScreen extends StatelessWidget {
         statusBarColor: Colors.transparent,
       ),
       child: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(Assets.imagesBackground),
-            fit: BoxFit.fill,
-          ),
-        ),
+        decoration: backgroundImage(),
         child: Scaffold(
           backgroundColor: Colors.transparent,
-          extendBody: true,
           body: BlocConsumer<MainCubit, MainState>(
-            listener: (context, state) {
-              // TODO: implement listener
-            },
+            listener: (context, state) {},
             builder: (context, state) {
               MainCubit mainCubit = MainCubit.get(context);
               return Center(
@@ -30,82 +22,38 @@ class VideoScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Expanded(
-                      flex: 2,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(
-                            Assets.imagesHelal,
-                          ),
-                          SvgPicture.asset(
-                            Assets.imagesAlQuran,
-                          ),
-                        ],
-                      ),
+                    SizedBox(
+                      height: context.screenHeight * .05,
+                    ),
+                    SvgPicture.asset(
+                      Assets.imagesLogo,
+                      width: 100.w,
+                      height: 100.h,
                     ),
                     if (state is GetVideosLoading)
-                      const Expanded(
-                        child: Center(
-                          child: CircularProgressIndicator.adaptive(
-                            backgroundColor: Colors.amber,
-                          ),
-                        ),
-                      )
+                      const AdaptiveIndicator()
                     else
                       Expanded(
+                        flex: 3,
                         child: ListView.separated(
                           scrollDirection: Axis.vertical,
                           itemBuilder: (context, index) {
-                            return GestureDetector(
-                              onTap: () {
-                                navigateTo(
-                                  context,
-                                  BlocProvider(
-                                    create: (context) =>
-                                        MainCubit()..getVideo(),
-                                    child: VideoDetailsScreen(
-                                      videosModel: mainCubit.videosModel ??
-                                          VideosModel(),
-                                      number: index,
-                                    ),
-                                  ),
-                                );
-                              },
-                              child: Container(
-                                margin:
-                                    const EdgeInsets.symmetric(horizontal: 20),
-                                decoration: BoxDecoration(
-                                  color: const Color.fromRGBO(17, 32, 149, 100),
-                                  borderRadius: const BorderRadius.all(
-                                    Radius.circular(10),
-                                  ),
-                                  border: Border.all(
-                                    color: ColorsManager.kBlueColor,
-                                  ),
-                                ),
-                                child: Text(
-                                  mainCubit.videosModel?.videos?[index]
-                                          .reciterName ??
-                                      '',
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    color: ColorsManager.kWhiteColor,
-                                    fontSize: 20,
-                                  ),
-                                ),
-                              ),
+                            return VideoListItem(
+                              mainCubit: mainCubit,
+                              index: index,
                             );
                           },
                           itemCount: mainCubit.videosModel?.videos?.length ?? 0,
                           separatorBuilder: (context, int index) {
-                            return const SizedBox(
-                              height: 40,
+                            return SizedBox(
+                              height: 20.h,
                             );
                           },
                         ),
                       ),
+                    SizedBox(
+                      height: context.screenHeight * .02,
+                    ),
                   ],
                 ),
               );
