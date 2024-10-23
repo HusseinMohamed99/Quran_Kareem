@@ -32,8 +32,8 @@ class RecitersDetailsWidget extends StatelessWidget {
             children: [
               SvgPicture.asset(
                 Assets.imagesIconMuslim,
-                width: 24.w,
-                height: 24.h,
+                width: 28.w,
+                height: 28.h,
               ),
               Text(
                 recitersModel.reciters![number].moshaf![index].id.toString(),
