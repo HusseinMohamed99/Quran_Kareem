@@ -2,29 +2,14 @@ part of './../../../core/helpers/export_manager/export_manager.dart';
 
 class RadioListViewWidget extends StatefulWidget {
   const RadioListViewWidget(
-      {super.key, required this.radioModel, required this.index});
-  final RadioModel radioModel;
-  final int index;
-
+      {super.key, required this.radioModel, required this.mainCubit});
+  final Radios radioModel;
+  final MainCubit mainCubit;
   @override
   State<RadioListViewWidget> createState() => _RadioListViewWidgetState();
 }
 
 class _RadioListViewWidgetState extends State<RadioListViewWidget> {
-  late AudioPlayer audioPlayer;
-
-  @override
-  void initState() {
-    super.initState();
-    audioPlayer = AudioPlayer();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    audioPlayer.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -33,56 +18,64 @@ class _RadioListViewWidgetState extends State<RadioListViewWidget> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            widget.radioModel.radios![widget.index].name ?? '',
+            widget.radioModel.name ?? '',
             style: buildTextStyle(context: context, fontSize: 16),
           ),
           SizedBox(
             height: 50.h,
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              IconButton(
-                iconSize: 24.sp,
-                onPressed: () {
-                  setState(
-                    () {
-                      audioPlayer.play(
-                        UrlSource(
-                          widget.radioModel.radios![widget.index].url ?? '',
-                        ),
-                      );
-                    },
-                  );
+              CustomRadioIconButton(
+                voidCallback: () {
+                  widget.mainCubit.previousRadio();
                 },
-                icon: SvgPicture.asset(
-                  Assets.imagesIconPlay,
-                  width: 24.w,
-                  height: 24.h,
-                  colorFilter: const ColorFilter.mode(
-                    ColorsManager.kWhiteColor,
-                    BlendMode.srcIn,
-                  ),
-                ),
+                imageIcon: Assets.imagesIconMetro,
               ),
-              IconButton(
-                iconSize: 24.sp,
-                onPressed: () async {
-                  await audioPlayer.pause();
+              CustomRadioIconButton(
+                voidCallback: () {
+                  widget.mainCubit.clickOnPlay();
                 },
-                icon: SvgPicture.asset(
-                  Assets.imagesPauseIcon,
-                  width: 24.w,
-                  height: 24.h,
-                  colorFilter: const ColorFilter.mode(
-                    ColorsManager.kWhiteColor,
-                    BlendMode.srcIn,
-                  ),
-                ),
+                imageIcon: Assets.imagesIconPlay,
+              ),
+              CustomRadioIconButton(
+                voidCallback: () {
+                  widget.mainCubit.nextRadio();
+                },
+                imageIcon: Assets.imagesIconMetroNext,
               ),
             ],
           )
         ],
+      ),
+    );
+  }
+}
+
+class CustomRadioIconButton extends StatelessWidget {
+  const CustomRadioIconButton({
+    super.key,
+    required this.voidCallback,
+    required this.imageIcon,
+  });
+
+  final VoidCallback voidCallback;
+  final String imageIcon;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      iconSize: 24.sp,
+      onPressed: voidCallback,
+      icon: SvgPicture.asset(
+        imageIcon,
+        width: 24.w,
+        height: 24.h,
+        colorFilter: const ColorFilter.mode(
+          ColorsManager.kWhiteColor,
+          BlendMode.srcIn,
+        ),
       ),
     );
   }

@@ -36,13 +36,11 @@ class RadioScreen extends StatelessWidget {
                             physics: const PageScrollPhysics(),
                             itemBuilder: (context, index) {
                               return RadioListViewWidget(
-                                radioModel:
-                                    mainCubit.radioModel ?? RadioModel(),
-                                index: index,
+                                radioModel: mainCubit.currentRadio!,
+                                mainCubit: mainCubit,
                               );
                             },
-                            itemCount:
-                                mainCubit.radioModel?.radios?.length ?? 0,
+                            itemCount: mainCubit.radios?.length ?? 0,
                           ),
                         ),
                     ],

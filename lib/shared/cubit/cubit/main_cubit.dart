@@ -68,17 +68,57 @@ class MainCubit extends Cubit<MainState> {
     });
   }
 
-  RadioModel? radioModel;
+  // RadioModel? radioModel;
+  List<Radios>? radios = [];
+  Radios? currentRadio;
+  int currentIndex = 0;
+  bool isPlay = false;
+  final player = AudioPlayer();
+
   void getRadio() async {
     emit(GetRadioLoading());
     await DioHelper.getData(
       url: radio,
     ).then((value) {
-      radioModel = RadioModel.fromJson(value.data);
+      var data = RadioModel.fromJson(value.data);
+      radios = data.radios;
+      currentRadio = radios![currentIndex];
       emit(GetRadioSuccess());
     }).catchError((error) {
       emit(GetRadioError(error.toString()));
     });
+  }
+
+  previousRadio() {
+    if (currentIndex == 0) return;
+    player.stop();
+    isPlay = false;
+    currentIndex--;
+    currentRadio = radios![currentIndex];
+    emit(GetRadioSuccess());
+  }
+
+  nextRadio() {
+    if (currentIndex == radios!.length - 1) return;
+    player.stop();
+    isPlay = false;
+    currentIndex++;
+    currentRadio = radios![currentIndex];
+    emit(GetRadioSuccess());
+  }
+
+  clickOnPlay() {
+    if (player.state == PlayerState.playing) {
+      isPlay = false;
+      player.pause();
+    } else if (player.state == PlayerState.paused) {
+      isPlay = true;
+      player.resume();
+    } else {
+      isPlay = true;
+      player.play(UrlSource(currentRadio!.url!));
+    }
+    emit(GetRadioSuccess());
   }
 
   Dio dio = Dio();
