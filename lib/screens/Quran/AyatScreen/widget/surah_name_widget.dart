@@ -15,11 +15,11 @@ class SurahNameWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: context.screenHeight * .25,
+      height: context.screenHeight * .29,
       child: Stack(
         children: [
           Positioned(
-            top: context.screenHeight * .04,
+            top: context.screenHeight * .08,
             child: Stack(
               alignment: Alignment.center,
               children: [

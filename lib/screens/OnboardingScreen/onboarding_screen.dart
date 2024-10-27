@@ -11,11 +11,11 @@ class OnBoardingScreen extends StatelessWidget {
       ),
       child: Container(
         decoration: backgroundImage(),
-        child: UpgradeWrapper(
-          child: Scaffold(
-            backgroundColor: Colors.transparent,
-            extendBody: true,
-            body: Center(
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          extendBody: true,
+          body: UpgradeWrapper(
+            child: Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,

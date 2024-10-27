@@ -40,7 +40,11 @@ class BuildVideoItem extends StatelessWidget {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: const AdaptiveIndicator(),
+                    child: const Center(
+                      child: CircularProgressIndicator.adaptive(
+                        backgroundColor: Colors.amber,
+                      ),
+                    ),
                   ),
                 ),
         ),

@@ -57,6 +57,8 @@ part './../../../screens/RiwayatScreen/widget/riwayat_widget_widget.dart';
 part './../../../screens/TafasirScreen/tafasir_screen.dart';
 part './../../../screens/TafasirScreen/widget/tafasir_widget.dart';
 part './../../../screens/VideoScreen/video_screen.dart';
+part './../../../screens/VideoScreen/widget/build_video_item.dart';
+part './../../../screens/VideoScreen/widget/custom_video_icon_button.dart';
 part './../../../screens/VideoScreen/widget/video_list_item.dart';
 part './../../../shared/components/adaptive_indicator.dart';
 part './../../../shared/components/background_image.dart';
@@ -64,6 +66,3 @@ part './../../../shared/components/responsive_font_size.dart';
 part './../../../shared/components/snack_bar.dart';
 part './../../../shared/components/text_style.dart';
 part './../../../shared/cubit/cubit/main_cubit.dart';
-
-part './../../../screens/VideoScreen/widget/custom_video_icon_button.dart';
-part './../../../screens/VideoScreen/widget/build_video_item.dart';
