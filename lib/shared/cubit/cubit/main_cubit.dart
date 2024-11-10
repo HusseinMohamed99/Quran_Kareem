@@ -44,7 +44,7 @@ class MainCubit extends Cubit<MainState> {
 
   previousTafasir() {
     if (currentIndexTafasir == 0) return;
-    player.stop();
+    tafasirPlayer.stop();
     isTafasirPlay = false;
     currentIndexTafasir--;
     currentTafasir = soar![currentIndexTafasir];
@@ -53,24 +53,36 @@ class MainCubit extends Cubit<MainState> {
 
   nextTafasir() {
     if (currentIndexTafasir == soar!.length - 1) return;
-    player.stop();
+    tafasirPlayer.stop();
     isTafasirPlay = false;
     currentIndexTafasir++;
     currentTafasir = soar![currentIndexTafasir];
     emit(GetTafasirSuccess());
   }
 
-  clickOnTafasirPlay() {
-    if (player.state == PlayerState.playing) {
-      isTafasirPlay = false;
-      player.pause();
-    } else if (player.state == PlayerState.paused) {
-      isTafasirPlay = true;
-      player.resume();
-    } else {
-      isTafasirPlay = true;
-      player.play(UrlSource(currentTafasir!.url!));
+  clickOnTafasirPlay() async {
+    try {
+      if (isRadioPlay == true && radioPlayer.state == PlayerState.playing) {
+        // Stop radio if playing
+        await radioPlayer.stop();
+        isRadioPlay = false;
+      }
+
+      // Control Tafasir playback based on current state
+      if (tafasirPlayer.state == PlayerState.playing) {
+        isTafasirPlay = false;
+        await tafasirPlayer.pause();
+      } else if (tafasirPlayer.state == PlayerState.paused) {
+        isTafasirPlay = true;
+        await tafasirPlayer.resume();
+      } else {
+        isTafasirPlay = true;
+        await tafasirPlayer.play(UrlSource(currentTafasir!.url!));
+      }
+    } catch (e) {
+      emit(GetTafasirError('Failed to play Tafasir audio: $e'));
     }
+
     emit(GetTafasirSuccess());
   }
 
@@ -78,7 +90,8 @@ class MainCubit extends Cubit<MainState> {
   Soar? currentTafasir;
   int currentIndexTafasir = 0;
   bool isTafasirPlay = false;
-  // TafasirModel? tafasirModel;
+  final tafasirPlayer = AudioPlayer();
+
   void getTafasir() {
     emit(GetTafasirLoading());
     DioHelper.getData(
@@ -98,8 +111,8 @@ class MainCubit extends Cubit<MainState> {
   List<Radios>? radios = [];
   Radios? currentRadio;
   int currentIndex = 0;
-  bool isPlay = false;
-  final player = AudioPlayer();
+  bool isRadioPlay = false;
+  final radioPlayer = AudioPlayer();
 
   void getRadio() async {
     emit(GetRadioLoading());
@@ -115,6 +128,51 @@ class MainCubit extends Cubit<MainState> {
     });
   }
 
+  previousRadio() {
+    if (currentIndex == 0) return;
+    radioPlayer.stop();
+    isRadioPlay = false;
+    currentIndex--;
+    currentRadio = radios![currentIndex];
+    emit(GetRadioSuccess());
+  }
+
+  nextRadio() {
+    if (currentIndex == radios!.length - 1) return;
+    radioPlayer.stop();
+    isRadioPlay = false;
+    currentIndex++;
+    currentRadio = radios![currentIndex];
+    emit(GetRadioSuccess());
+  }
+
+  clickOnPlay() async {
+    try {
+      if (isTafasirPlay == true && tafasirPlayer.state == PlayerState.playing) {
+        // Stop Tafasir if playing
+        await tafasirPlayer.stop();
+        isTafasirPlay = false;
+      }
+
+      // Check and control radio playback states
+      if (radioPlayer.state == PlayerState.playing) {
+        isRadioPlay = false;
+        await radioPlayer.pause();
+      } else if (radioPlayer.state == PlayerState.paused) {
+        isRadioPlay = true;
+        await radioPlayer.resume();
+      } else {
+        isRadioPlay = true;
+        await radioPlayer.play(UrlSource(currentRadio!.url!));
+      }
+    } catch (e) {
+      emit(GetRadioError('Failed to play audio: $e'));
+    }
+
+    emit(GetRadioSuccess());
+  }
+
+  Dio dio = Dio();
   VideosModel? videosModel;
   void getVideo() async {
     emit(GetVideosLoading());
@@ -127,40 +185,6 @@ class MainCubit extends Cubit<MainState> {
       emit(GetVideosError(error.toString()));
     });
   }
-
-  previousRadio() {
-    if (currentIndex == 0) return;
-    player.stop();
-    isPlay = false;
-    currentIndex--;
-    currentRadio = radios![currentIndex];
-    emit(GetRadioSuccess());
-  }
-
-  nextRadio() {
-    if (currentIndex == radios!.length - 1) return;
-    player.stop();
-    isPlay = false;
-    currentIndex++;
-    currentRadio = radios![currentIndex];
-    emit(GetRadioSuccess());
-  }
-
-  clickOnPlay() {
-    if (player.state == PlayerState.playing) {
-      isPlay = false;
-      player.pause();
-    } else if (player.state == PlayerState.paused) {
-      isPlay = true;
-      player.resume();
-    } else {
-      isPlay = true;
-      player.play(UrlSource(currentRadio!.url!));
-    }
-    emit(GetRadioSuccess());
-  }
-
-  Dio dio = Dio();
 
   RecitersModel? recitersModel;
   void getReciters() {

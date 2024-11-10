@@ -1,15 +1,24 @@
 part of './../../../core/helpers/export_manager/export_manager.dart';
 
-class RadioListViewWidget extends StatefulWidget {
-  const RadioListViewWidget(
+class RadioWidget extends StatefulWidget {
+  const RadioWidget(
       {super.key, required this.radioModel, required this.mainCubit});
   final Radios radioModel;
   final MainCubit mainCubit;
   @override
-  State<RadioListViewWidget> createState() => _RadioListViewWidgetState();
+  State<RadioWidget> createState() => _RadioWidgetState();
 }
 
-class _RadioListViewWidgetState extends State<RadioListViewWidget> {
+class _RadioWidgetState extends State<RadioWidget> {
+  bool isPlaying = false;
+
+  void _togglePlay() async {
+    await widget.mainCubit.clickOnTafasirPlay();
+    setState(() {
+      isPlaying = widget.mainCubit.isRadioPlay;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -34,9 +43,7 @@ class _RadioListViewWidgetState extends State<RadioListViewWidget> {
                 imageIcon: Assets.imagesIconMetro,
               ),
               CustomPlayerIconButton(
-                voidCallback: () {
-                  widget.mainCubit.clickOnPlay();
-                },
+                voidCallback: _togglePlay,
                 imageIcon: Assets.imagesIconPlay,
               ),
               CustomPlayerIconButton(

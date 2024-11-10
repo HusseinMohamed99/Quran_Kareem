@@ -14,6 +14,15 @@ class TafasirWidget extends StatefulWidget {
 }
 
 class _TafasirWidgetState extends State<TafasirWidget> {
+  bool isPlaying = false;
+
+  void _togglePlay() async {
+    await widget.mainCubit.clickOnTafasirPlay();
+    setState(() {
+      isPlaying = widget.mainCubit.isTafasirPlay;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -40,9 +49,7 @@ class _TafasirWidgetState extends State<TafasirWidget> {
               ),
               CustomPlayerIconButton(
                 imageIcon: Assets.imagesIconPlay,
-                voidCallback: () {
-                  widget.mainCubit.clickOnTafasirPlay();
-                },
+                voidCallback: _togglePlay,
               ),
               CustomPlayerIconButton(
                 imageIcon: Assets.imagesIconMetroNext,

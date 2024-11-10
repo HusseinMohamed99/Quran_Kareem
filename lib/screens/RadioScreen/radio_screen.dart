@@ -31,16 +31,9 @@ class RadioScreen extends StatelessWidget {
                         const AdaptiveIndicator()
                       else
                         Expanded(
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            physics: const PageScrollPhysics(),
-                            itemBuilder: (context, index) {
-                              return RadioListViewWidget(
-                                radioModel: mainCubit.currentRadio!,
-                                mainCubit: mainCubit,
-                              );
-                            },
-                            itemCount: mainCubit.radios?.length ?? 0,
+                          child: RadioWidget(
+                            radioModel: mainCubit.currentRadio!,
+                            mainCubit: mainCubit,
                           ),
                         ),
                     ],
