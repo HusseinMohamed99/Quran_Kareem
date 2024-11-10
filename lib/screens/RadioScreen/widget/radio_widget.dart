@@ -10,10 +10,19 @@ class RadioWidget extends StatefulWidget {
 }
 
 class _RadioWidgetState extends State<RadioWidget> {
+  @override
+  void dispose() {
+    // Stop and dispose radio player when the widget is removed
+    if (widget.mainCubit.radioPlayer.state == PlayerState.playing) {
+      widget.mainCubit.radioPlayer.stop();
+    }
+    super.dispose();
+  }
+
   bool isPlaying = false;
 
   void _togglePlay() async {
-    await widget.mainCubit.clickOnTafasirPlay();
+    await widget.mainCubit.clickOnPlay();
     setState(() {
       isPlaying = widget.mainCubit.isRadioPlay;
     });

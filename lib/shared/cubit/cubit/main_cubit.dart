@@ -61,25 +61,38 @@ class MainCubit extends Cubit<MainState> {
   }
 
   clickOnTafasirPlay() async {
-    try {
-      if (isRadioPlay == true && radioPlayer.state == PlayerState.playing) {
-        // Stop radio if playing
-        await radioPlayer.stop();
-        isRadioPlay = false;
-      }
+    print('clickOnTafasirPlay called'); // Debugging log
 
+    // Stop radio playback if it’s playing before starting Tafasir
+    if (radioPlayer.state == PlayerState.playing) {
+      print('Stopping Radio player before playing Tafasir'); // Debugging log
+      await radioPlayer.stop().then((_) {
+        print('Radio player stopped'); // Debugging log
+        isRadioPlay = false;
+      }).catchError((e) {
+        print('Error stopping Radio player: $e'); // Error log
+        emit(GetRadioError('Failed to stop Radio player'));
+        return; // Exit if stopping radio fails
+      });
+    }
+
+    try {
       // Control Tafasir playback based on current state
       if (tafasirPlayer.state == PlayerState.playing) {
+        print('Pausing Tafasir player'); // Debugging log
         isTafasirPlay = false;
         await tafasirPlayer.pause();
       } else if (tafasirPlayer.state == PlayerState.paused) {
+        print('Resuming Tafasir player'); // Debugging log
         isTafasirPlay = true;
         await tafasirPlayer.resume();
       } else {
+        print('Starting Tafasir player'); // Debugging log
         isTafasirPlay = true;
         await tafasirPlayer.play(UrlSource(currentTafasir!.url!));
       }
     } catch (e) {
+      print('Error in clickOnTafasirPlay: $e'); // Debugging log
       emit(GetTafasirError('Failed to play Tafasir audio: $e'));
     }
 
@@ -147,26 +160,38 @@ class MainCubit extends Cubit<MainState> {
   }
 
   clickOnPlay() async {
-    try {
-      if (isTafasirPlay == true && tafasirPlayer.state == PlayerState.playing) {
-        // Stop Tafasir if playing
-        await tafasirPlayer.stop();
-        isTafasirPlay = false;
-      }
+    print('clickOnPlay called'); // Debugging log
 
-      // Check and control radio playback states
+    // Ensure Tafasir is fully stopped before playing radio
+    if (tafasirPlayer.state == PlayerState.playing) {
+      print('Stopping Tafasir player before playing radio'); // Debugging log
+      await tafasirPlayer.stop().then((_) {
+        print('Tafasir player stopped'); // Debugging log
+        isTafasirPlay = false;
+      }).catchError((e) {
+        print('Error stopping Tafasir player: $e'); // Error log
+        emit(GetTafasirError('Failed to stop Tafasir'));
+      });
+    }
+
+    try {
+      // Radio player actions
       if (radioPlayer.state == PlayerState.playing) {
+        print('Pausing Radio player'); // Debugging log
         isRadioPlay = false;
         await radioPlayer.pause();
       } else if (radioPlayer.state == PlayerState.paused) {
+        print('Resuming Radio player'); // Debugging log
         isRadioPlay = true;
         await radioPlayer.resume();
       } else {
+        print('Starting Radio player'); // Debugging log
         isRadioPlay = true;
         await radioPlayer.play(UrlSource(currentRadio!.url!));
       }
     } catch (e) {
-      emit(GetRadioError('Failed to play audio: $e'));
+      print('Error in clickOnPlay: $e'); // Debugging log
+      emit(GetRadioError('Failed to play radio audio'));
     }
 
     emit(GetRadioSuccess());

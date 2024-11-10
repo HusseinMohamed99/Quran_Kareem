@@ -14,6 +14,15 @@ class TafasirWidget extends StatefulWidget {
 }
 
 class _TafasirWidgetState extends State<TafasirWidget> {
+  @override
+  void dispose() {
+    // Stop and dispose Tafasir player when the widget is removed
+    if (widget.mainCubit.tafasirPlayer.state == PlayerState.playing) {
+      widget.mainCubit.tafasirPlayer.stop();
+    }
+    super.dispose();
+  }
+
   bool isPlaying = false;
 
   void _togglePlay() async {
