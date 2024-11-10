@@ -97,25 +97,3 @@ class QuranKareemApp extends StatelessWidget {
     ]);
   }
 }
-
-// Future<void> requestReview() async {
-//   final InAppReview inAppReview = InAppReview.instance;
-
-//   if (await inAppReview.isAvailable()) {
-//     await inAppReview.requestReview();
-//   } else {
-//     goToApplicationOnPlayStore();
-//   }
-// }
-
-// goToApplicationOnPlayStore() async {
-//   PackageInfo packageInfo = await PackageInfo.fromPlatform();
-//   String url = '';
-//   String packageName = packageInfo.packageName;
-//   if (Platform.isAndroid) {
-//     url = 'https://play.google.com/store/apps/details?id=$packageName';
-//   } else if (!await launchUrl(Uri.parse(url),
-//       mode: LaunchMode.externalApplication)) {
-//     throw Exception('Could not launch $url');
-//   }
-// }
