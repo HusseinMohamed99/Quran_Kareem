@@ -1,5 +1,5 @@
 name: "moshaf_app"
-version: "1.0.3+11"
+version: "1.0.4+12"
 publish_to: none
 environment:
   sdk: ">=3.4.4 <4.0.0"
