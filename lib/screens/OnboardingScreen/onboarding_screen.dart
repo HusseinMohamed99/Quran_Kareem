@@ -11,7 +11,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   void initState() {
     super.initState();
-    checkForUpdate(context);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      checkForUpdate(context);
+    });
   }
 
   @override
@@ -47,60 +49,108 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 Future<void> checkForUpdate(BuildContext context) async {
   final remoteConfig = FirebaseRemoteConfig.instance;
 
+  // Set the Remote Config fetch settings
   await remoteConfig.setConfigSettings(RemoteConfigSettings(
     fetchTimeout: const Duration(seconds: 10),
     minimumFetchInterval: const Duration(hours: 1),
   ));
 
-  await remoteConfig.fetchAndActivate();
+  try {
+    // Fetch and activate the remote config
+    await remoteConfig.fetchAndActivate();
 
-  final latestVersion = remoteConfig.getString('latest_version');
-  final packageInfo = await PackageInfo.fromPlatform();
-  final currentVersion = packageInfo.version;
+    // Get the remote version from Remote Config
+    final latestVersion = remoteConfig.getString('latest_version');
 
-  if (_isVersionOlder(currentVersion, latestVersion)) {
-    showUpdateDialog(context);
+    // Log the latest version to check if it's fetched correctly
+    print('Latest version fetched: $latestVersion');
+
+    // Get the current app version
+    final packageInfo = await PackageInfo.fromPlatform();
+    final currentVersion = packageInfo.version;
+
+    // Log the current version
+    print('Current app version: $currentVersion');
+
+    // Check if the app needs to be updated
+    if (_isVersionOlder(currentVersion, latestVersion)) {
+      await showUpdateDialog(context);
+    }
+  } catch (e) {
+    print('Error fetching remote config: $e');
   }
 }
 
-bool _isVersionOlder(String current, String latest) {
-  final currentParts = current.split('.').map(int.parse).toList();
-  final latestParts = latest.split('.').map(int.parse).toList();
+bool _isVersionOlder(String remoteVersion, String currentVersion) {
+  // Split the versions and parse each part as an integer
+  List<int> remoteParts =
+      remoteVersion.split('.').map((part) => int.tryParse(part) ?? 0).toList();
+  List<int> currentParts =
+      currentVersion.split('.').map((part) => int.tryParse(part) ?? 0).toList();
 
-  for (int i = 0; i < latestParts.length; i++) {
-    if (currentParts[i] < latestParts[i]) return true;
-    if (currentParts[i] > latestParts[i]) return false;
+  for (int i = 0; i < remoteParts.length; i++) {
+    if (remoteParts[i] > currentParts[i]) {
+      return true; // Remote version is newer
+    } else if (remoteParts[i] < currentParts[i]) {
+      return false; // Current version is up-to-date
+    }
   }
-  return false;
+  return false; // Versions are the same
 }
 
-void showUpdateDialog(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: const Text('تحديث جديد متاح'),
-        content: const Text(
-            'يوجد إصدار جديد من التطبيق. يُفضل تحديث التطبيق للحصول على أحدث الميزات.'),
-        actions: <Widget>[
-          TextButton(
-            child: const Text('لاحقًا'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
+Future<void> showUpdateDialog(BuildContext context) async {
+  // Ensure the dialog is shown after the frame is rendered
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            'تحديث جديد متاح',
+            style: buildTextStyle(
+              context: context,
+              fontSize: 15,
+              fontWeight: FontWeight.w700,
+              color: ColorsManager.kBlackColor,
+            ),
           ),
-          TextButton(
-            child: const Text('تحديث الآن'),
-            onPressed: () {
-              // افتح رابط التطبيق على Google Play
-              _launchURL(
-                  'https://play.google.com/store/apps/details?id=com.example.your_app_id');
-            },
-          ),
-        ],
-      );
-    },
-  );
+          content: const Text(
+              'يوجد إصدار جديد من التطبيق. يُفضل تحديث التطبيق للحصول على أحدث الميزات.'),
+          actions: <Widget>[
+            TextButton(
+              child: Text(
+                'لاحقًا',
+                style: buildTextStyle(
+                  context: context,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w700,
+                  color: ColorsManager.kBlackColor,
+                ),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text(
+                'تحديث الآن',
+                style: buildTextStyle(
+                  context: context,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w700,
+                  color: ColorsManager.kBlueColor,
+                ),
+              ),
+              onPressed: () {
+                _launchURL(
+                    'https://play.google.com/store/apps/details?id=com.example.your_app_id');
+              },
+            ),
+          ],
+        );
+      },
+    );
+  });
 }
 
 Future<void> _launchURL(String url) async {
