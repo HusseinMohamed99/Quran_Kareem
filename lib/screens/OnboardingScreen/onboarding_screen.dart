@@ -99,58 +99,63 @@ bool _isVersionOlder(String remoteVersion, String currentVersion) {
 }
 
 Future<void> showUpdateDialog(BuildContext context) async {
+  PackageInfo packageInfo = await PackageInfo.fromPlatform();
+
+  String packageName = packageInfo.packageName;
   // Ensure the dialog is shown after the frame is rendered
-  WidgetsBinding.instance.addPostFrameCallback((_) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(
-            'تحديث جديد متاح',
-            style: buildTextStyle(
-              context: context,
-              fontSize: 15,
-              fontWeight: FontWeight.w700,
-              color: ColorsManager.kBlackColor,
-            ),
-          ),
-          content: const Text(
-              'يوجد إصدار جديد من التطبيق. يُفضل تحديث التطبيق للحصول على أحدث الميزات.'),
-          actions: <Widget>[
-            TextButton(
-              child: Text(
-                'لاحقًا',
-                style: buildTextStyle(
-                  context: context,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w700,
-                  color: ColorsManager.kBlackColor,
-                ),
+  WidgetsBinding.instance.addPostFrameCallback(
+    (_) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(
+              'تحديث جديد متاح',
+              style: buildTextStyle(
+                context: context,
+                fontSize: 15,
+                fontWeight: FontWeight.w700,
+                color: ColorsManager.kBlackColor,
               ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
             ),
-            TextButton(
-              child: Text(
-                'تحديث الآن',
-                style: buildTextStyle(
-                  context: context,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w700,
-                  color: ColorsManager.kBlueColor,
+            content: const Text(
+                'يوجد إصدار جديد من التطبيق. يُفضل تحديث التطبيق للحصول على أحدث الميزات.'),
+            actions: <Widget>[
+              TextButton(
+                child: Text(
+                  'لاحقًا',
+                  style: buildTextStyle(
+                    context: context,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                    color: ColorsManager.kBlackColor,
+                  ),
                 ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
               ),
-              onPressed: () {
-                _launchURL(
-                    'https://play.google.com/store/apps/details?id=com.example.your_app_id');
-              },
-            ),
-          ],
-        );
-      },
-    );
-  });
+              TextButton(
+                child: Text(
+                  'تحديث الآن',
+                  style: buildTextStyle(
+                    context: context,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                    color: ColorsManager.kBlueColor,
+                  ),
+                ),
+                onPressed: () {
+                  _launchURL(
+                      'https://play.google.com/store/apps/details?id=$packageName');
+                },
+              ),
+            ],
+          );
+        },
+      );
+    },
+  );
 }
 
 Future<void> _launchURL(String url) async {
