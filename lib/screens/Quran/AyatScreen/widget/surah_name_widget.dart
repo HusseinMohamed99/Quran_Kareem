@@ -1,6 +1,6 @@
 part of '../../../../core/helpers/export_manager/export_manager.dart';
 
-class SurahNameWidget extends StatelessWidget {
+class SurahNameWidget extends StatefulWidget {
   const SurahNameWidget({
     super.key,
     required this.surahs,
@@ -11,6 +11,24 @@ class SurahNameWidget extends StatelessWidget {
   final AyatModel surahs;
   final int number;
   final MainCubit mainCubit;
+
+  @override
+  State<SurahNameWidget> createState() => _SurahNameWidgetState();
+}
+
+class _SurahNameWidgetState extends State<SurahNameWidget> {
+  late AudioPlayer audioPlayer;
+  @override
+  void initState() {
+    super.initState();
+    audioPlayer = AudioPlayer();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    audioPlayer.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,13 +67,15 @@ class SurahNameWidget extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        surahs.data?.surah?[number].name ?? '',
+                        widget.surahs.data?.surah?[widget.number].name ?? '',
                         style: buildTextStyle(context: context, fontSize: 18),
                       ),
                       Row(
                         children: [
                           Text(
-                            surahs.data?.surah?[number].revelationType ?? '',
+                            widget.surahs.data?.surah?[widget.number]
+                                    .revelationType ??
+                                '',
                             style:
                                 buildTextStyle(context: context, fontSize: 12),
                           ),
@@ -71,9 +91,50 @@ class SurahNameWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '${mainCubit.ayatModel?.data?.surah?[number].ayahs?.length.toString() ?? ''} Verses',
+                            '${widget.mainCubit.ayatModel?.data?.surah?[widget.number].ayahs?.length.toString() ?? ''} Verses',
                             style:
                                 buildTextStyle(context: context, fontSize: 12),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10.h),
+                      Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              setState(
+                                () {
+                                  if (audioPlayer.state !=
+                                      PlayerState.playing) {
+                                    audioPlayer.play(
+                                      UrlSource(
+                                        'https://listen.ourquraan.com/Mishary_Alafasy/${(widget.number + 1).toString().padLeft(3, '0')}.mp3',
+                                      ),
+                                    );
+                                  } else {
+                                    audioPlayer.stop();
+                                  }
+                                },
+                              );
+                            },
+                            child: CircleAvatar(
+                              radius: 18.r,
+                              backgroundColor: ColorsManager.kWhiteColor,
+                              child: SvgPicture.asset(
+                                Assets.imagesPlay,
+                                width: 30.w,
+                                height: 30.h,
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 10.w),
+                          Text(
+                            'تشغيل السورة كاملة',
+                            style: buildTextStyle(
+                              context: context,
+                              fontSize: 14,
+                              color: ColorsManager.kWhiteColor,
+                            ),
                           ),
                         ],
                       ),

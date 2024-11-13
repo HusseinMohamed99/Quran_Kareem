@@ -20,7 +20,6 @@ import 'package:moshaf_app/shared/Network/end_points.dart';
 import 'package:moshaf_app/shared/components/custom_outline.dart';
 import 'package:moshaf_app/shared/components/navigator.dart';
 import 'package:moshaf_app/shared/components/responsive.space.dart';
-import 'package:moshaf_app/shared/components/upgrade_wrapper.dart';
 import 'package:moshaf_app/shared/cubit/cubit/internet_bloc.dart';
 import 'package:moshaf_app/shared/cubit/cubit/main_state.dart';
 import 'package:moshaf_app/shared/enum/enum.dart';

@@ -27,17 +27,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           extendBody: true,
-          body: UpgradeWrapper(
-            child: Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const OnBoardingImage(),
-                  const CustomOnBoardingButton(),
-                  SizedBox(height: context.screenHeight * 0.03),
-                ],
-              ),
+          body: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const OnBoardingImage(),
+                const CustomOnBoardingButton(),
+                SizedBox(height: context.screenHeight * 0.03),
+              ],
             ),
           ),
         ),

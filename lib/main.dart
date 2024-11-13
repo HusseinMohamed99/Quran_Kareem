@@ -12,7 +12,6 @@ import 'package:moshaf_app/shared/Network/dio_helper.dart';
 import 'package:moshaf_app/shared/bloc_observer.dart';
 import 'package:moshaf_app/shared/components/app_font.dart';
 import 'package:moshaf_app/shared/cubit/cubit/internet_bloc.dart';
-import 'package:upgrader/upgrader.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,9 +22,7 @@ Future<void> main() async {
   DioHelper.init();
   Bloc.observer = MyBlocObserver();
   await ScreenUtil.ensureScreenSize();
-  if (kDebugMode) {
-    await Upgrader.clearSavedSettings();
-  }
+
   runApp(const QuranKareemApp());
 }
 
