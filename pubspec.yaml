@@ -5,6 +5,7 @@ environment:
   sdk: ">=3.4.4 <4.0.0"
 description: A new Flutter project.
 dependencies:
+  audio_service: ^0.18.15
   audioplayers: ^6.0.0
   bloc: ^8.1.2
   connectivity_plus: ^6.0.4

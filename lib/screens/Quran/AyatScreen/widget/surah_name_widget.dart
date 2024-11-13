@@ -17,17 +17,41 @@ class SurahNameWidget extends StatefulWidget {
 }
 
 class _SurahNameWidgetState extends State<SurahNameWidget> {
-  late AudioPlayer audioPlayer;
+  late AudioPlayer _audioPlayer;
+  bool isPlaying = false;
+
   @override
   void initState() {
     super.initState();
-    audioPlayer = AudioPlayer();
+    _audioPlayer = AudioPlayer();
+    _audioPlayer.onPlayerStateChanged.listen((state) {
+      if (state == PlayerState.completed) {
+        setState(() {
+          isPlaying = false;
+        });
+      }
+    });
   }
 
   @override
   void dispose() {
+    _audioPlayer.dispose();
     super.dispose();
-    audioPlayer.dispose();
+  }
+
+  Future<void> _playPauseAudio() async {
+    if (isPlaying) {
+      await _audioPlayer.pause();
+    } else {
+      await _audioPlayer.play(
+        UrlSource(
+          'https://listen.ourquraan.com/Mishary_Alafasy/${(widget.number + 1).toString().padLeft(3, '0')}.mp3',
+        ),
+      );
+    }
+    setState(() {
+      isPlaying = !isPlaying;
+    });
   }
 
   @override
@@ -101,29 +125,20 @@ class _SurahNameWidgetState extends State<SurahNameWidget> {
                       Row(
                         children: [
                           GestureDetector(
-                            onTap: () {
-                              setState(
-                                () {
-                                  if (audioPlayer.state !=
-                                      PlayerState.playing) {
-                                    audioPlayer.play(
-                                      UrlSource(
-                                        'https://listen.ourquraan.com/Mishary_Alafasy/${(widget.number + 1).toString().padLeft(3, '0')}.mp3',
-                                      ),
-                                    );
-                                  } else {
-                                    audioPlayer.stop();
-                                  }
-                                },
-                              );
-                            },
+                            onTap: _playPauseAudio,
                             child: CircleAvatar(
                               radius: 18.r,
                               backgroundColor: ColorsManager.kWhiteColor,
                               child: SvgPicture.asset(
-                                Assets.imagesPlay,
-                                width: 30.w,
-                                height: 30.h,
+                                isPlaying
+                                    ? Assets.imagesPauseIcon
+                                    : Assets.imagesPlay,
+                                width: 24.w,
+                                height: 24.h,
+                                colorFilter: const ColorFilter.mode(
+                                  ColorsManager.kGreenColor,
+                                  BlendMode.srcIn,
+                                ),
                               ),
                             ),
                           ),
