@@ -18,7 +18,7 @@ extension SnackBarExtension on BuildContext {
   }
 }
 
-onTap(BuildContext context) {
+void onTap(BuildContext context) {
   // You Can Use
   context.showSnackBar('Tapped');
 
